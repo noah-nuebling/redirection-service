@@ -13,7 +13,7 @@
 
         // Redirect to the URL specified in the 'url' query parameter
 
-        function openLocalURLAndCloseTab(url) {
+        function openLocalURLAndCloseTab(url, postaction) {
             
             // This is copied from mac-mouse-fix-website/public/activate/index.html
             // Notes:
@@ -25,35 +25,51 @@
             // - Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
             
             if (url == undefined) {
-                document.getElementById("message").innerText += `Target url is undefined`
-                return 
+                document.getElementById("message").innerText += `Target url is undefined`;
+                return;
             }
             if (url.includes(window.location.hostname)) {
-                document.getElementById("message").innerText += `Target url ${url} contains current hostname`
-                return
+                document.getElementById("message").innerText += `Target url ${url} contains current hostname`;
+                return;
             }
 
-            document.getElementById("message").innerText += `Redirecting...`
-
             window.location.href = url;
-            setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);
-            setTimeout(function () { window.close(); }, 5 * 1000);
+
+            if (postaction == "close") {
+                setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);
+                setTimeout(function () { window.close(); }, 5 * 1000);
+            } else if (postaction == "back") {
+                setTimeout(function () { window.onfocus = function () { window.history.back(); }; }, 10);
+            }
         }
 
         function redirect() {
 
+            // Parse params
             var target = getQueryParam("target");
+            var customMessage = decodeURIComponent(getQueryParam("message"))
             if (!target) {
                 document.getElementById("message").innerText += "No redirection target provided!";
                 return
             }
+            if (customMessage) {
+                document.getElementById("message").innerText += customMessage;
+            }
 
+            // Decide what to do after redirect
+            postaction = window.history.length > 1 ? "back" : "close";
+
+            // Map target to url
+            var url
             if (target == "macos-settings-loginitems") {
-                var url = "x-apple.systempreferences:com.apple.LoginItems-Settings.extension"
-                openLocalURLAndCloseTab(url);
+                 url = "x-apple.systempreferences:com.apple.LoginItems-Settings.extension";
             } else {
                 document.getElementById("message").innerText += `Unknown redirection target "${target}"`;
+                return
             }
+
+            // Open url
+            openLocalURLAndCloseTab(url, postaction);
         }
     </script>
 </head>
