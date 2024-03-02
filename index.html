@@ -16,10 +16,13 @@
         function openLocalURLAndCloseTab(url) {
             
             // This is copied from mac-mouse-fix-website/public/activate/index.html
+            // Notes:
+            // - Not sure if we should display "Redirecting..." in the window? It's English so not language agnostic, but the blank page might be confusing to users?
+            // - Autoclosing doesn't work when we're using the redirect-service from GitHub Markdown. 
+            //  - I think it only works if the window hosting the redirect-service was opened by js or something? (That's what the messages in Safari console suggest.)
             // Notes from activate:
             // - The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
             // - Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
-    
             
             if (url == undefined) {
                 document.getElementById("message").innerText += `Target url is undefined`
@@ -30,14 +33,14 @@
                 return
             }
 
+            document.getElementById("message").innerText += `Redirecting...`
+
             window.location.href = url;
             setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);
-            setTimeout(function () { window.close(); }, 5 * 1000); 
+            setTimeout(function () { window.close(); }, 5 * 1000);
         }
 
         function redirect() {
-
-            document.getElementById("message").innerText += "Redirecting...\n"
 
             var target = getQueryParam("target");
             if (!target) {
