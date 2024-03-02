@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Redirecting...</title>
+    
     <script>
         // Function to get URL parameters
         function getQueryParam(param) {
@@ -11,7 +12,20 @@
         }
 
         // Redirect to the URL specified in the 'url' query parameter
-        window.onload = function() {
+
+        function openLocalURLAndCloseTab(url) {
+            
+            // This is copied from mac-mouse-fix-website/public/activate/index.html
+            // Notes from activate:
+            // - The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
+            // - Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
+    
+            window.location.href = url;
+            setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);
+            setTimeout(function () { window.close(); }, 5 * 1000);
+        }
+
+        function redirect() {
 
             var target = getQueryParam("target");
             if (!target) {
@@ -20,21 +34,14 @@
             }
 
             if (target == "macos-settings-loginitems") {
-                window.location.href = decodeURIComponent("x-apple.systempreferences:com.apple.LoginItems-Settings.extension");
-                try {
-                    // Attempt to close the window after redirection.
-                    // This may not work in all browsers due to security restrictions.
-                    window.close();
-                } catch (e) {
-                    console.log("Window could not be closed:", e);
-                }
+                window.location.href = openLocalURLAndCloseTab("x-apple.systempreferences:com.apple.LoginItems-Settings.extension");
             } else {
                 document.getElementById("message").innerText = `Unknown redirection target ${target}.`;
             }
         }
     </script>
 </head>
-<body>
-    <p id="message">Redirecting...</p>
+<body onload="redirect()">
+    <!-- <p id="message">Redirecting...</p> -->
 </body>
 </html>
