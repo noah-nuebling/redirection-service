@@ -12,7 +12,7 @@
 
         // Redirect to the URL specified in the 'url' query parameter
         window.onload = function() {
-            
+
             var target = getQueryParam("target");
             if (!target) {
                 document.getElementById("message").innerText = "No redirection target provided!";
@@ -21,6 +21,13 @@
 
             if (target == "macos-settings-loginitems") {
                 window.location.href = decodeURIComponent("x-apple.systempreferences:com.apple.LoginItems-Settings.extension");
+                try {
+                    // Attempt to close the window after redirection.
+                    // This may not work in all browsers due to security restrictions.
+                    window.close();
+                } catch (e) {
+                    console.log("Window could not be closed:", e);
+                }
             } else {
                 document.getElementById("message").innerText = `Unknown redirection target ${target}.`;
             }
