@@ -20,9 +20,10 @@
             // - Not sure if we should display "Redirecting..." in the window? It's English so not language agnostic (Maybe we should host this inside the MMF Website so we can translate it?), but the blank page might be confusing to users?
             // - Autoclosing doesn't work when we're using the redirect-service from GitHub Markdown. 
             //  - I think it only works if the window hosting the redirect-service was opened by js or something? (That's what the messages in Safari console suggest.)
-            // Notes from activate:
-            // - The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
-            // - Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
+            // Notes on postactions:
+            // - close postaction: The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
+            // - close postaction: Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
+            // - back postaction: When building back postaction, the 10ms delay didn't seem to be necessary for Firefox. Maybe Firefox fixed things? Idk. but the 10ms delay doesn't hurt so leaving it.
             
             if (url == undefined) {
                 document.getElementById("message").innerText += `Target url is undefined`;
@@ -40,6 +41,7 @@
                 setTimeout(function () { window.close(); }, 5 * 1000);
             } else if (postaction == "back") {
                 setTimeout(function () { window.onfocus = function () { window.history.back(); }; }, 10);
+                // window.onfocus = function () { window.history.back(); };
             }
         }
 
@@ -47,13 +49,14 @@
 
             // Parse params
             var target = getQueryParam("target");
-            var customMessage = decodeURIComponent(getQueryParam("message"))
+            var customMessage = getQueryParam("message")
             if (!target) {
                 document.getElementById("message").innerText += "No redirection target provided!";
                 return
             }
             if (customMessage) {
-                document.getElementById("message").innerText += customMessage;
+                document.getElementById("message").innerText += customMessage
+                document.getElementById("message").innerText += decodeURIComponent(customMessage);
             }
 
             // Decide what to do after redirect
