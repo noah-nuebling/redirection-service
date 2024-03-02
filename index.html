@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            var searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
+        }
 
+        // Redirect to the URL specified in the 'url' query parameter
+        window.onload = function() {
+            
+            var target = getQueryParam("target");
+            if (!target) {
+                document.getElementById("message").innerText = "No redirection target provided!";
+                return
+            }
+
+            if (target == "macos-settings-loginitems") {
+                window.location.href = decodeURIComponent("x-apple.systempreferences:com.apple.LoginItems-Settings.extension");
+            } else {
+                document.getElementById("message").innerText = `Unknown redirection target ${target}.`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <p id="message">Redirecting...</p>
+</body>
+</html>
