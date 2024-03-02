@@ -20,12 +20,24 @@
             // - The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
             // - Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
     
+            
+            if (url == undefined) {
+                document.getElementById("message").innerText += `Target url is undefined`
+                return 
+            }
+            if (url.includes(window.location.hostname)) {
+                document.getElementById("message").innerText += `Target url ${url} contains current hostname`
+                return
+            }
+
             window.location.href = url;
             setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);
-            setTimeout(function () { window.close(); }, 5 * 1000);
+            setTimeout(function () { window.close(); }, 5 * 1000); 
         }
 
         function redirect() {
+
+            document.getElementById("message").innerText += "Redirecting...\n"
 
             var target = getQueryParam("target");
             if (!target) {
@@ -34,16 +46,16 @@
             }
 
             if (target == "macos-settings-loginitems") {
-                window.location.href = openLocalURLAndCloseTab("x-apple.systempreferences:com.apple.LoginItems-Settings.extension");
+                var url = "x-apple.systempreferences:com.apple.LoginItems-Settings.extension"
+                openLocalURLAndCloseTab(url);
             } else {
-                document.getElementById("message").innerText += `Unknown redirection target ${target}.`;
+                document.getElementById("message").innerText += `Unknown redirection target "${target}"`;
             }
         }
-
-        window.onload = redirect
     </script>
 </head>
-<body onload="">
+
+<body onload="redirect()">
     <p id="message"></p>
 </body>
 </html>
