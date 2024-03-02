@@ -29,19 +29,21 @@
 
             var target = getQueryParam("target");
             if (!target) {
-                document.getElementById("message").innerText = "No redirection target provided!";
+                document.getElementById("message").innerText += "No redirection target provided!";
                 return
             }
 
             if (target == "macos-settings-loginitems") {
                 window.location.href = openLocalURLAndCloseTab("x-apple.systempreferences:com.apple.LoginItems-Settings.extension");
             } else {
-                document.getElementById("message").innerText = `Unknown redirection target ${target}.`;
+                document.getElementById("message").innerText += `Unknown redirection target ${target}.`;
             }
         }
+
+        window.onload = redirect
     </script>
 </head>
-<body onload="redirect()">
+<body onload="">
     <p id="message"></p>
 </body>
 </html>
