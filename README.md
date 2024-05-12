@@ -22,6 +22,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 Possible values:
 
 - `macos-settings-loginitems` redirects to the macOS login items settings
+- `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2. (NOTE: Update this when you release new version of MMF 2!)
 
 **message**
 - What text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
