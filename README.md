@@ -6,14 +6,14 @@ We created this because in GitHub Markdown, I couldn't make links clickable that
 
 This simple redirection service should serve as a workaround.
 
-At the time of writing, you can use it like this:
-
-- Open Login Items Settings:
-  - https://noah-nuebling.github.io/redirection-service/?target=macos-settings-loginitems&message=
-
 ## Post actions
 
 At the time of writing, after redirecting, the redirection service will try to navigate back in the window/tab history, or, if there is no history, it will try to close the redirection window. Closing doesn't work in all circumstances due to browser security stuff.
+
+## Usage examples
+
+- To open Login Items Settings:
+  - https://noah-nuebling.github.io/redirection-service/?target=macos-settings-loginitems&message=
 
 ## Query Params
 
