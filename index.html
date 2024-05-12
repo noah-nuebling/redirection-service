@@ -65,6 +65,8 @@
             var url
             if (target == "macos-settings-loginitems") {
                  url = "x-apple.systempreferences:com.apple.LoginItems-Settings.extension";
+            else if (target == "mmf2-latest") {
+                url = "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.3"
             } else {
                 document.getElementById("message").innerText += `Unknown redirection target "${target}"`;
                 return
