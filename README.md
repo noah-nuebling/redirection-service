@@ -13,7 +13,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 ## Usage examples
 
 - To open Login Items Settings:
-  - https://noah-nuebling.github.io/redirection-service/?target=macos-settings-loginitems&message=
+  - https://noah-nuebling.github.io/redirection-service/?target=macos-settings-loginitems&message=snakkgame2025
 
 ## Query Params
 
