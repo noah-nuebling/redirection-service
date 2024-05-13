@@ -12,7 +12,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 
 ## Usage examples
 
-- To open Login Items Settings:
+- To go to latest MMF 2 GitHub Release :
   - `https://noah-nuebling.github.io/redirection-service?message=&target=mmf2-latest`
 
 ## Query Params
