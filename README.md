@@ -23,7 +23,8 @@ Possible values:
 
 - `macos-settings-loginitems` redirects to the macOS login items settings
 - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2. This is useful because this is the latest free version of MMF. (NOTE: Update this when you release new version of MMF 2!)
-- `questions` redirects to where common questions that users might have are answered. We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.
+- `mmf-questions` redirects to where common questions that users might have are answered. We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.
+- `mmf-compatibility-guide` We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.
   
 **message**
 - What text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
