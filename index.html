@@ -72,7 +72,7 @@
             if (Object.hasOwn(urlMap, target)) {
                 url = urlMap[target];
             } else {
-                document.getElementById("message").innerText += `Unknown redirection target "${target}"`;
+                document.getElementById("message").innerText += `Unknown redirection target "${target}". Target-url map: ${urlMap}"`;
                 return;
             }
 
