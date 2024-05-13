@@ -13,7 +13,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 ## Usage examples
 
 - To go to latest MMF 2 GitHub Release :
-  - `https://noah-nuebling.github.io/redirection-service?message=&target=mmf2-latest`
+  - https://noah-nuebling.github.io/redirection-service?message=&target=mmf2-latest
 
 ## Query Params
 
