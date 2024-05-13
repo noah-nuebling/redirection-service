@@ -62,16 +62,18 @@
             postaction = window.history.length > 1 ? "back" : "close";
 
             // Map target to url
-            var url
-            if (target == "macos-settings-loginitems") {
-                 url = "x-apple.systempreferences:com.apple.LoginItems-Settings.extension";
-            } else if (target == "mmf2-latest") {
-                url = "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.3";
-            } else if (target == "questions") {
-                url = "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions";
-            } else {
+            const urlMap = {
+              macos-settings-loginitems: "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
+              mmf2-latest: "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.3",
+              questions: "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
+            };
+
+            var url;
+            if (Object.hasOwn(urlMap, target)) {
+                url = urlMap[target];
+            else {
                 document.getElementById("message").innerText += `Unknown redirection target "${target}"`;
-                return
+                return;
             }
 
             // Open url
