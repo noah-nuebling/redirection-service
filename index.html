@@ -67,16 +67,20 @@
                 "mmf2-latest": "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.3",
                 "mmf-questions": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
                 "mmf-compatibility-guide": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#macos-compatibility",
+                "mailto-noah": "",
             };
 
             var url;
             if (Object.hasOwn(urlMap, target)) {
-                url = urlMap[target];
-            } else if (target == "mailto-noah") {
-                // Handle email separately from urlMap to prevent automatic crawling of the address, and to allow custom param for prefilling email subject.
-                const subject = getQueryParam("subject") ?? "";
-                const e1 = "com"; const e2 = "gmail"; const e3 = "public"; const e4 = ".n"; const e5 = "noah";
-                url = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}`;
+
+                if (target == "mailto-noah") {
+                    // Handle email separately from urlMap to prevent automatic crawling of the address, and to allow custom param for prefilling email subject.
+                    const subject = getQueryParam("subject") ?? "";
+                    const e1 = "com"; const e2 = "gmail"; const e3 = "public"; const e4 = ".n"; const e5 = "noah";
+                    url = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}`;
+                } else {
+                    url = urlMap[target];
+                }
             } else {
                 document.getElementById("message").innerText += `Unknown redirection target "${target}". Known targets:\n${Object.keys(urlMap)}`;
                 return;
