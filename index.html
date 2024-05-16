@@ -74,7 +74,7 @@
                 url = urlMap[target];
             } else if (target == "mailto-noah") {
                 // Handle email separately from urlMap to prevent automatic crawling of the address, and to allow custom param for prefilling email subject.
-                const subject = getQueryParam("subject");
+                const subject = getQueryParam("subject") ?? "";
                 const e1 = "com"; const e2 = "gmail"; const e3 = "public"; const e4 = ".n"; const e5 = "noah";
                 url = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}`;
             } else {
