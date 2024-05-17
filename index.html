@@ -21,6 +21,7 @@
             // - Autoclosing doesn't work when we're using the redirect-service from GitHub Markdown. 
             //  - I think it only works if the window hosting the redirect-service was opened by js or something? (That's what the messages in Safari console suggest.)
             // Notes on postactions:
+            // - We only execute the postaction if the link is opened outside of the browser. E.g. a mailto: link.
             // - close postaction: The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
             // - close postaction: Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
             // - back postaction: When building back postaction, the 10ms delay didn't seem to be necessary for Firefox. Maybe Firefox fixed things? Idk. but the 10ms delay doesn't hurt so leaving it.
@@ -41,7 +42,7 @@
                 setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);     // Install onfocus listener after 10ms
                 setTimeout(function () { window.close(); }, 5 * 1000);                                 // Close after 5s
             } else if (postaction == "back") {
-                setTimeout(function () { window.onfocus = function () { window.history.back(); }; }, 20);    // Install onfocus listener after 20ms
+                setTimeout(function () { window.onfocus = function () { window.history.back(); }; }, 100);    // Install onfocus listener after 20ms
                 // window.onfocus = function () { window.history.back(); };
             }
         }
@@ -58,9 +59,6 @@
             if (customMessage) {
                 document.getElementById("message").innerText += decodeURIComponent(customMessage);
             }
-
-            // Decide what to do after redirect
-            postaction = window.history.length > 1 ? "back" : "close";
 
             // Map target to url
             const urlMap = {
@@ -86,6 +84,24 @@
             } else {
                 document.getElementById("message").innerText += `Unknown redirection target "${target}". Known targets:\n${Object.keys(urlMap)}`;
                 return;
+            }
+
+            // Decide what to do after redirect
+
+            var postaction = null
+            
+            const urlScheme = url.split(':')[0]
+            const urlOpensInBrowser = (urlScheme == 'http' || urlScheme == 'https')
+            const urlIsInvalid = (urlScheme == '' || urlScheme == null)
+            
+            if (urlIsInvalid) {
+                document.getElementById("message").innerText += `Unknown url scheme "${urlScheme}". url: ${url}`;
+                return;
+            }
+            if (urlOpensInBrowser) {
+                postaction = "nothing";
+            } else {
+                postaction = window.history.length > 1 ? "back" : "close";
             }
 
             // Open url
