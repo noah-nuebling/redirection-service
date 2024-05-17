@@ -24,6 +24,7 @@
             // - close postaction: The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
             // - close postaction: Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
             // - back postaction: When building back postaction, the 10ms delay didn't seem to be necessary for Firefox. Maybe Firefox fixed things? Idk. but the 10ms delay doesn't hurt so leaving it.
+            //    Edit: When directly opening a `redirection-service` link from the Safari address bar, the redirection often failed. Seemingly because the navigate-back action was triggered too quickly. Increasing the navigate-back delay to hopefully fix this. 
             
             if (url == undefined) {
                 document.getElementById("message").innerText += `Target url is undefined`;
@@ -37,10 +38,10 @@
             window.location.href = url;
 
             if (postaction == "close") {
-                setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);
-                setTimeout(function () { window.close(); }, 5 * 1000);
+                setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);     // Install onfocus listener after 10ms
+                setTimeout(function () { window.close(); }, 5 * 1000);                                 // Close after 5s
             } else if (postaction == "back") {
-                setTimeout(function () { window.onfocus = function () { window.history.back(); }; }, 10);
+                setTimeout(function () { window.onfocus = function () { window.history.back(); }; }, 20);    // Install onfocus listener after 20ms
                 // window.onfocus = function () { window.history.back(); };
             }
         }
