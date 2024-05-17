@@ -29,6 +29,7 @@ Possible values:
 - `mmf-compatibility-guide` We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.
 - `mailto-noah` Compose an email to my public email account. I try not to include the email on the web to avoid spam. But I hope this indirect way to linking to my email through the redirection service will prevent spam.
   - You can also prefill the subject by adding a `&subject` query param.
+- `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Later we might want to move this to the MMF website.
   
 **message**
 - What text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
