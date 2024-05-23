@@ -15,7 +15,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 - To go to latest MMF 2 GitHub Release :
   - https://noah-nuebling.github.io/redirection-service?message=&target=mmf2-latest
 - To compose an email to me:
-  - https://noah-nuebling.github.io/redirection-service?message=&target=mailto-noah&subject=Cool%20Beans
+  - https://noah-nuebling.github.io/redirection-service?message=&target=mailto-noah&body=&subject=Cool%20Beans
 
 ## Query Params
 
@@ -29,6 +29,7 @@ Possible values:
 - `mmf-compatibility-guide` We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.
 - `mailto-noah` Compose an email to my public email account. I try not to include the email on the web to avoid spam. But I hope this indirect way to linking to my email through the redirection service will prevent spam.
   - You can also prefill the subject by adding a `&subject` query param.
+  - You can prefill the body by adding a `&body` query param
 - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Later we might want to move this to the MMF website.
   
 **message**
