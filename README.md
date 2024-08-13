@@ -31,6 +31,7 @@ Possible values:
   - You can also prefill the subject by adding a `&subject` query param.
   - You can prefill the body by adding a `&body` query param
 - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Later we might want to move this to the MMF website.
+- `localization-guide`: Link to instructions for helping to translate Mac Mouse Fix.
   
 **message**
 - What text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
