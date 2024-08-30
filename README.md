@@ -33,7 +33,7 @@ Possible values:
 
   - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Later we might want to move this to the MMF website.
 - MMF Guides:
-  - `localization-guide`: Link to instructions for helping to translate Mac Mouse Fix.
+  - `mmf-localization-guide`: Link to instructions for helping to translate Mac Mouse Fix.
   - `mmf-compatibility-guide` We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it. Takes `&locale=` param
   - `mmf-captured-buttons-guide`: Link to instructions explaining the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
   
