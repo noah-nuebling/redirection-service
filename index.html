@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Redirecting...</title> <!-- Default page title which can be overridden by query params. -->
     <style>
         /* Light mode styling */
         html {
@@ -73,7 +73,7 @@
 
             // Parse params
             var target = getQueryParam("target");
-            var pageTitle = getQueryParam("pageTitle") ?? "Redirecting...";
+            var customPageTitle = getQueryParam("pageTitle");
             var customMessage = getQueryParam("message");
             var locale = getQueryParam("locale");
             if (!target) {
@@ -83,7 +83,10 @@
             if (customMessage) {
                 document.getElementById("message").innerText += decodeURIComponent(customMessage);
             }
-
+            if (customPageTitle) {
+                document.title = customPageTitle;
+            }
+            
             // Map target to url
             var urlMap = {
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
