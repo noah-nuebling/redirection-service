@@ -23,15 +23,17 @@ At the time of writing, after redirecting, the redirection service will try to n
 
 Possible values:
 
-- `macos-settings-loginitems` redirects to the macOS login items settings
-- `mailto-noah` Compose an email to my public email account. I try not to include the email on the web to avoid spam. But I hope this indirect way to linking to my email through the redirection service will prevent spam.
+- `macos-settings-loginitems` opens macOS login items settings
+- `mailto-noah` Composes an email to my public email account.
+  - I try not to include the email on the web to avoid spam. But I hope this indirect way to linking to my email through the redirection service will prevent spam.
   - You can also prefill the subject by adding a `&subject` query param.
   - You can prefill the body by adding a `&body` query param
 - MMF:
   - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2. This is useful because this is the latest free version of MMF. (NOTE: **Update this** when you release new version of MMF 2!)
-  - `mmf-questions` redirects to where common questions that users might have are answered. We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.
-
-  - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Later we might want to move this to the MMF website.
+  - `mmf-questions` redirects to where common questions that users might have are answered.
+    - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.)
+  - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme.
+    - (Later we might want to move this to the MMF website.)
 - MMF Guides:
   - `mmf-localization-guide`: Instructions for helping to translate Mac Mouse Fix.
   - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
