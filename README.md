@@ -21,7 +21,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 
 **target**
 
-Possible values:
+Possible values for the `&target=` param:
 
 - `macos-settings-loginitems` opens macOS login items settings
 - `mailto-noah` Composes an email to my public email account.
