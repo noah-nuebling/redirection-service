@@ -33,9 +33,10 @@ Possible values:
 
   - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Later we might want to move this to the MMF website.
 - MMF Guides:
-  - `mmf-localization-guide`: Link to instructions for helping to translate Mac Mouse Fix.
-  - `mmf-compatibility-guide` We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it. Takes `&locale=` param
-  - `mmf-captured-buttons-guide`: Link to instructions explaining the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
+  - `mmf-localization-guide`: Instructions for helping to translate Mac Mouse Fix.
+  - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
+    - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.) 
+  - `mmf-captured-buttons-guide`: Explanation of the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
   
 **message**
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
