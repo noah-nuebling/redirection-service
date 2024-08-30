@@ -79,8 +79,8 @@
             // Override map 
             //    for specific locale
             if (locale != null && locale != sourceLocale) {
-                urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`
-                urlMap["captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112` // TODO: Update once we localize this.
+                urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`; // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
+                urlMap["captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`; // TODO: Update once we localize this.
             }
             
             var url;
