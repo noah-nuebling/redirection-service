@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title>
+    <title></title>
     <style>
         /* Light mode styling */
-        body {
+        html {
             margin: 0;
             padding: 0;
-            padding-left: 1rem;
+            padding-left: 0.75rem;
             font-family: system-ui, -apple-system, sans-serif;
-            background-color: #fff;
-            color: black;
+            background-color: color-mix(in srgb, white, black 0%);
+            color: black
         }
 
         /* Dark mode styling */
         @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #000;
-                color: white;
+            html {
+                background-color: color-mix(in srgb, black, white 10%);;
+                color: white
             }
         }
     </style>
@@ -73,6 +73,7 @@
 
             // Parse params
             var target = getQueryParam("target");
+            var pageTitle = getQueryParam("pageTitle") ?? "Redirecting...";
             var customMessage = getQueryParam("message");
             var locale = getQueryParam("locale");
             if (!target) {
