@@ -39,7 +39,7 @@ Possible values:
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
 
 **page-title**
-- The `&page-title=` param determines what text to display inside the tab button while redirecting. It defaults to `...`. (Last updated: 30.08.2024)
+- The `&page-title=` param determines what text to display inside the tab button while redirecting. It defaults to `...` (Last updated: 30.08.2024)
 
 **locale**
 - Some targets take an additional `&locale=` param, which opens the target in a specific language. Valid values are Xcode language IDs for languages our project supports, such as 'pt-BR' for Brazilian Portugese or 'de' for German.
