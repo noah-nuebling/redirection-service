@@ -57,7 +57,7 @@
             }
             if (url.includes(window.location.hostname) && (false)) { 
                 // Note: 
-                //     This triggers when redirecting to feedback-assistant (as of 30.08.2024)
+                //     Turning this validation off since it triggers when redirecting to feedback-assistant (as of 30.08.2024)
                 //     Why did I ever think this is a problem?
                 document.getElementById("message").innerText += `Target url ${url} contains current hostname`;
                 return;
