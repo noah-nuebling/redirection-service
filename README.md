@@ -40,6 +40,7 @@ Possible values for the `&target=` param:
   - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.) 
   - `mmf-captured-buttons-guide`: Explanation of the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
+  - `mmf-ventura-enabling-guide`: Workaround for problems with enabling the app on macOS 13 Ventura and macOS 14 Sonoma. (Fixed in macOS 15 Sequoia)
   
 **message**
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
