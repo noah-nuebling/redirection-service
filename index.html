@@ -5,6 +5,10 @@
     <title>Redirecting...</title>
     
     <script>
+
+        // Constants
+        const sourceLocale = "en";
+        
         // Function to get URL parameters
         function getQueryParam(param) {
             var searchParams = new URLSearchParams(window.location.search);
@@ -74,7 +78,7 @@
 
             // Override map 
             //    for specific locale
-            if (locale != null) {
+            if (locale != null && locale != sourceLocale) {
                 urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/feature-strings-catalog/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`
                 urlMap["captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112` // TODO: Update once we localize this.
             }
