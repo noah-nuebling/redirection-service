@@ -31,9 +31,9 @@ Possible values for the `&target=` param:
 - MMF:
   - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2.
     - This is useful because this is the latest free version of MMF. (NOTE: **Update this** when you release new version of MMF 2!)
-  - `mmf-questions` redirects to where common questions that users might have are answered.
+  - `mmf-questions` redirects to where common questions that users might have are answered. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.)
-  - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme.
+  - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme. Takes `&locale=` param.
     - (Later we might want to move this to the MMF website.)
 - MMF Feedback:
   - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
