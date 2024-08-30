@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting...</title> <!-- Default page title which can be overridden by query params. -->
+    <title>Redirecting...</title> <!-- Default page title which can be overridden by query params. The title shows inside the tab button while redirecting. -->
     <style>
         /* Light mode styling */
         html {
@@ -84,7 +84,7 @@
                 document.getElementById("message").innerText += decodeURIComponent(customMessage);
             }
             if (customPageTitle) {
-                document.title = customPageTitle;
+                document.title = customPageTitle; // Not sure this works, I haven't tested.
             }
             
             // Map target to url
