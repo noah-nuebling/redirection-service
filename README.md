@@ -38,6 +38,9 @@ Possible values:
 **message**
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
 
+**page-title**
+- The `&page-title=` param determines what text to display inside the tab button while redirecting. It defaults to `...`. (Last updated: 30.08.2024)
+
 **locale**
 - Some targets take an additional `&locale=` param, which opens the target in a specific language. Valid values are Xcode language IDs for languages our project supports, such as 'pt-BR' for Brazilian Portugese or 'de' for German.
   - Discussion: (Last updated: 30.08.2024) These locale specifiers are used consistently between the MMF Website, MMF App and MMF Markdown documents and they are defined inside Xcode project settings inside the mac-mouse-fix and mac-mouse-fix-website repos. We really only need this `&locale=` param for linking to markdown documents, since the website and app have their own logic for deciding which language to display themselves in.
