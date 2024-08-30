@@ -35,6 +35,11 @@ Possible values for the `&target=` param:
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.)
   - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme.
     - (Later we might want to move this to the MMF website.)
+- MMF Feedback:
+  - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
+    - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
+  - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
+  - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param. 
 - MMF Guides:
   - `mmf-localization-guide`: Instructions for helping to translate Mac Mouse Fix.
   - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
