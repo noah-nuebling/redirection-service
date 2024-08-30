@@ -50,7 +50,8 @@
 
             // Parse params
             var target = getQueryParam("target");
-            var customMessage = getQueryParam("message")
+            var customMessage = getQueryParam("message");
+            var locale = getQueryParam("locale");
             if (!target) {
                 document.getElementById("message").innerText += "No redirection target provided!";
                 return
@@ -60,16 +61,24 @@
             }
 
             // Map target to url
-            const urlMap = {
+            var urlMap = {
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
                 "mmf2-latest": "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4",
                 "mmf-questions": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
-                "mmf-compatibility-guide": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#macos-compatibility",
                 "mailto-noah": "",
                 "mmf-about": "https://github.com/noah-nuebling/mac-mouse-fix",
                 "localization-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731",
+                "mmf-compatibility-guide": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#macos-compatibility",
+                "captured-buttons-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/112",
             };
 
+            // Override map 
+            //    for specific locale
+            if (locale != null) {
+                urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/feature-strings-catalog/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`
+                urlMap["captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112` // TODO: Update once we localize this.
+            }
+            
             var url;
             if (Object.hasOwn(urlMap, target)) {
 
