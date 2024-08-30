@@ -29,7 +29,8 @@ Possible values:
   - You can also prefill the subject by adding a `&subject` query param.
   - You can prefill the body by adding a `&body` query param
 - MMF:
-  - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2. This is useful because this is the latest free version of MMF. (NOTE: **Update this** when you release new version of MMF 2!)
+  - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2.
+    - This is useful because this is the latest free version of MMF. (NOTE: **Update this** when you release new version of MMF 2!)
   - `mmf-questions` redirects to where common questions that users might have are answered.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.)
   - `mmf-about` Links to the about document for Mac Mouse Fix. At the time of writing this is the GitHub readme.
