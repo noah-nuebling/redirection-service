@@ -49,18 +49,24 @@
             // - close postaction: The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
             // - close postaction: Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
             // - back postaction: When building back postaction, the 10ms delay didn't seem to be necessary for Firefox. Maybe Firefox fixed things? Idk. but the 10ms delay doesn't hurt so leaving it.
-            
+
+            // Validate
             if (url == undefined) {
                 document.getElementById("message").innerText += `Target url is undefined`;
                 return;
             }
-            if (url.includes(window.location.hostname)) {
+            if (url.includes(window.location.hostname) && (false)) { 
+                // Note: 
+                //     This triggers when redirecting to feedback-assistant (as of 30.08.2024)
+                //     Why did I ever think this is a problem?
                 document.getElementById("message").innerText += `Target url ${url} contains current hostname`;
                 return;
             }
 
+            // Redirect
             window.location.href = url;
 
+            // Post-action
             if (postaction == "close") {
                 setTimeout(function () { window.onfocus = function () { window.close(); }; }, 10);     // Install onfocus listener after 10ms
                 setTimeout(function () { window.close(); }, 5 * 1000);                                 // Close after 5s
