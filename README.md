@@ -29,7 +29,7 @@ Possible values for the `&target=` param:
   - You can also prefill the subject by adding a `&subject` query param.
   - You can prefill the body by adding a `&body` query param
 - MMF:
-  - `mmf-github-readme` redirects to the GitHub readme. We plan to use this for the 'Check it out on GitHub' link inside the MMF app. (01.09.2024)
+  - `mmf-github-readme` redirects to the GitHub readme. We plan to use this for the 'Check it out on GitHub' link inside the MMF app. (Last updated: 01.09.2024)
   - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2.
     - This is useful because this is the latest free version of MMF. (NOTE: **Update this** when you release new version of MMF 2!)
   - `mmf-questions` redirects to where common questions that users might have are answered. Takes `&locale=` param.
