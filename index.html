@@ -100,6 +100,7 @@
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
                 "mailto-noah": "",
                 /// MMF:
+                "mmf-github-readme": "https://github.com/noah-nuebling/mac-mouse-fix/",
                 "mmf2-latest": "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4",
                 "mmf-questions": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
                 "mmf-about": "https://github.com/noah-nuebling/mac-mouse-fix",
@@ -117,6 +118,7 @@
             // Override map 
             //    for specific locale
             if (locale != null && locale != sourceLocale) {
+                urlMap["mmf-github-readme"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`
                 urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`; // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
                 urlMap["mmf-captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`; // TODO: Update once we localize this.
             }
