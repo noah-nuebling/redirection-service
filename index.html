@@ -96,7 +96,9 @@
             
             // Map target to url
             var urlMap = {
-                /// General:
+                /// `macmousefix:` links
+                "mmfl-activate": "macmousefix:activate"
+                /// Non-browser:
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
                 "mailto-noah": "",
                 /// MMF:
@@ -110,11 +112,11 @@
                 "mmf-feedback-feature-request": "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=feature-request",
                 "mmf-feedback-other": "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=other",
                 /// MMF Guides:
-                "mmf-localization-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731", // We don't localize this one, localizers need to speak English anyways.
+                "mmf-localization-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731", 
+                "mmf-ventura-enabling-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/861", 
                 "mmf-guides": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides",
                 "mmf-compatibility-guide": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#macos-compatibility",
                 "mmf-captured-buttons-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/112",
-                "mmf-ventura-enabling-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/861",
             };
 
             // Override map 
@@ -126,7 +128,7 @@
                 urlMap["mmf-acknowledgements"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Acknowledgements.md`;
                 urlMap["mmf-about"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`;
                 urlMap["mmf-questions"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#questions`;
-                urlMap["mmf2-latest"] = `https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4`; // TODO: Update once we localize
+                urlMap["mmf2-latest"] = `https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4`; // TODO: Update if/when we localize
 
                 // MMF Feedback:
                 //    Note: We don't need to localize this since feedback-assistant supports js and can set localization itself based on browser settings.
@@ -135,7 +137,6 @@
                 urlMap["mmf-guides"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides`; // TODO: Update if/when we localize
                 urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`; // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
                 urlMap["mmf-captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`; // TODO: Update once we localize this.
-                urlMap["mmf-ventura-enabling-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/861`; // TODO: Update once we localize
             }
             
             var url;
