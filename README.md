@@ -23,7 +23,7 @@ At the time of writing, after redirecting, the redirection service will try to n
 
 Possible values for the `&target=` param:
 
-- **`macmousefix:` links**
+- **macmousefix: links**
   - `mmfl-activate` opens the activateLicense screen inside the MMF app.
 - **Non-browser:**
   - `macos-settings-loginitems` opens macOS login items settings
