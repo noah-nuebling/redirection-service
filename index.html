@@ -48,9 +48,14 @@
             // Notes on postactions:
             // - We only execute the postaction if the link is opened outside of the browser. E.g. a mailto: link.
             // - close postaction: The 10ms delay before installing onfocus is necessary for Firefox to not close immediately
-            // - close postaction: Closing the tab after 5s is because Chrome doesn't close the tab automatically after opening the URL
-            //    - However this also closes the window while displaying the 'Do you want to allow <page> to open <app>?' dialog in Safari after 5 seconds, which we don't want.
             // - back postaction: When building back postaction, the 10ms delay didn't seem to be necessary for Firefox. Maybe Firefox fixed things? Idk. but the 10ms delay doesn't hurt so leaving it.
+            // - any postaction:
+            //    - We want the redirect window to close/goback immediately after opening the URL. But not before opening the url. 
+            //    - We achieve something somewhat close to that with the window.onfocus() callbacks. 
+            //        - In Chrome, those callbacks don't trigger immediately after opening the app, instead they only open after you click the window which displays the redirect page after the app has been opened. 
+            //        - In Safari, we see the same behaviour as Chrome if the user has clicked 'Always Allow' in the 'Allow <website> to open <app>?' dialog. However, if the user manually clicks 'Allow' in that dialog, the window.onfocus() callback will trigger immediately after the url is openend, which is the ideal behaviour we want.
+            //            - To reset the 'Always Allow' choice in Safari, you need to manually edit ~/Library/Safari/PerSitePreferences.db. See: https://apple.stackexchange.com/questions/465335/how-to-retract-always-allow-safari-permission-for-opening-app
+            //        - We used to autoclose the redirection window after 5s to make it a bit better, but that also closes the window while the 'Allow <website> to open <app>?' dialog is still open, which would be annoying if the user is still trying to read the dialog.
 
             // Validate
             if (url == undefined) {
