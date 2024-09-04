@@ -13,7 +13,7 @@ That's also why all the `&target=`s that relate to mmf have `mmf` in their name.
 However, I thought that giving the redirection service a nice favicon, and making it available under the familiar macmousefix.com domain makes it less confusing or sketchy-seeming to users.
 
 For the forseeable future I'll probably only use this for MMF.
-However, I think we should keep using the `mmf-` prefixes for the `&target=`s, to stay consistent and allow us to reuse this outside of MMF.
+However, I think we should keep using the `mmf-` prefixes for the `&target=`s, to stay consistent and allow us to reuse this outside of MMF at some point.
 
 The redirection-service is accessible through.
 - https://noah-nuebling.github.io/redirection-service/
