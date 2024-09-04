@@ -50,7 +50,7 @@
             var customMessage = getQueryParam("message");
             var locale = getQueryParam("locale");
             if (!target) {
-                appendToMessage("No redirection target provided! See: https://github.com/noah-nuebling/redirection-service");
+                appendToMessage("No redirection target provided.\n\nDocumentation at: https://github.com/noah-nuebling/redirection-service");
                 return
             }
             if (customMessage) {
