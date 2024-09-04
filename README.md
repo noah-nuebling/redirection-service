@@ -19,6 +19,10 @@ The redirection-service is accessible through.
 - https://noah-nuebling.github.io/redirection-service/
 - https://redirect.macmousefix.com/ 
 
+## Why not use mac-mouse-fix-website?
+
+The main website is a big slow vue app, this is basically just a html.file which we can edit pretty easily directly in the browser.
+
 ## Post actions
 
 At the time of writing, after opening an application (e.g. with a mailto: link), the redirection service will try to navigate back in the window/tab history, or, if there is no history, it will try to close the redirection window. 
