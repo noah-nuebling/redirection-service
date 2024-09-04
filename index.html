@@ -50,11 +50,11 @@
             var customMessage = getQueryParam("message");
             var locale = getQueryParam("locale");
             if (!target) {
-                document.getElementById("message").innerText += "No redirection target provided!";
+                appendToMessage("No redirection target provided!");
                 return
             }
             if (customMessage) {
-                document.getElementById("message").innerText += decodeURIComponent(customMessage);
+                appendToMessage(decodeURIComponent(customMessage));
             }
             if (customPageTitle) {
                 document.title = customPageTitle; // Not sure this works, I haven't tested.
@@ -118,7 +118,7 @@
                     url = urlMap[target];
                 }
             } else {
-                document.getElementById("message").innerText += `Unknown redirection target "${target}". Known targets:\n${Object.keys(urlMap)}`;
+                appendToMessage(`Unknown redirection target "${target}". Known targets:\n${String(Object.keys(urlMap)).split(',').join(',\n')}`);
                 return;
             }
 
@@ -131,7 +131,7 @@
             const urlIsInvalid = (urlScheme == '' || urlScheme == null)
 
             if (urlIsInvalid) {
-                document.getElementById("message").innerText += `Unknown url scheme "${urlScheme}". url: ${url}`;
+                appendToMessage(`Unknown url scheme "${urlScheme}". url: ${url}`);
                 return;
             }
             if (urlOpensInBrowser) {
@@ -164,14 +164,14 @@
                 
             // Validate
             if (url == undefined) {
-                document.getElementById("message").innerText += `Target url is undefined`;
+                appendToMessage(`Target url is undefined`);
                 return;
             }
             if (url.includes(window.location.hostname) && (false)) { 
                 // Note: 
                 //     Turning this validation off since it triggers when redirecting to feedback-assistant (as of 30.08.2024)
                 //     Why did I ever think this is a problem?
-                document.getElementById("message").innerText += `Target url ${url} contains current hostname`;
+                appendToMessage(`Target url ${url} contains current hostname`);
                 return;
             }
 
@@ -405,7 +405,30 @@
         // Helper functions
         //
 
-        // Function to get URL parameters
+        function deferUntilDOMLoaded(callback) {
+            if (document.readyState !== "loading") {
+                callback();
+            } else {
+                document.addEventListener("DOMContentLoaded", callback);
+            }
+        }
+
+        function getMessage(callback) {
+            deferUntilDOMLoaded(() => {
+                callback(document.getElementById("message").innerText);
+            });
+        }
+        function setMessage(newMessage) {
+            deferUntilDOMLoaded(() => {
+                document.getElementById("message").innerText = newMessage;
+            });
+        }
+        function appendToMessage(appendix) {
+            deferUntilDOMLoaded(() => {
+                document.getElementById("message").innerText += appendix;
+            });
+        }
+
         function getQueryParam(param) {
             var searchParams = new URLSearchParams(window.location.search);
             return searchParams.get(param);
