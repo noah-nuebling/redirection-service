@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>...</title> <!-- Default page title which can be overridden by query params. The title shows inside the tab button while redirecting. -->
-    <link rel="icon" href="" type="image/x-icon"/> <!-- Attempt to delete github favicon and use default browser icon instead. Untested. Update: I dislike the 'G' that Safari puts. Will use MMF icon instead to give users feeling of security/familiarity -->
+    <link rel="icon" href="favicon.png" type="image/x-icon"/> <!-- Attempt to delete github favicon and use default browser icon instead. Untested. Update: I dislike the 'G' that Safari puts. Will use MMF icon instead to give users feeling of security/familiarity -->
     <style>
         /* Light mode styling */
         html {
@@ -50,7 +50,7 @@
             var customMessage = getQueryParam("message");
             var locale = getQueryParam("locale");
             if (!target) {
-                appendToMessage("No redirection target provided!");
+                appendToMessage("No redirection target provided! See: https://github.com/noah-nuebling/redirection-service");
                 return
             }
             if (customMessage) {
