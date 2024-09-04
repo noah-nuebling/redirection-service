@@ -81,7 +81,8 @@ Possible values for the `&target=` param:
 
 **page-title**
 (Last updated: 04.09.2024)
-- The `&page-title=` param determines what text to display inside the tab bar while redirecting. It defaults to `...` 
+- The `&page-title=` param determines what text to display inside the tab bar while redirecting. It defaults to `Mac Mouse Fix...` 
+  - (previously just `...` when we wanted to keep the redirection-service independent from MMF.)
 - When the page-title ends with `...`, the dots will appear one-by-one. Until, after the last dot appears, the page closes.
 
 **locale**
