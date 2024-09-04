@@ -6,9 +6,26 @@ We created this because in GitHub Markdown, I couldn't make links clickable that
 
 This simple redirection service should serve as a workaround.
 
+## redirect.macmousefix.com && MMF Favicon
+
+This was initially intended as a general redirection service that is not specifically part of the mac-mouse-fix project.
+That's also why all the `&target=`s that relate to mmf have `mmf` in their name.
+However, I thought that giving the redirection service a nice favicon, and making it available under the familiar macmousefix.com domain makes it less confusing or sketchy-seeming to users.
+
+For the forseeable future I'll probably only use this for MMF.
+However, I think we should keep using the `mmf-` prefixes for the `&target=`s, to stay consistent and allow us to reuse this outside of MMF.
+
+The redirection-service is accessible through.
+- https://noah-nuebling.github.io/redirection-service/
+- https://redirect.macmousefix.com/ 
+
 ## Post actions
 
-At the time of writing, after redirecting, the redirection service will try to navigate back in the window/tab history, or, if there is no history, it will try to close the redirection window. Closing doesn't work in all circumstances due to browser security stuff.
+At the time of writing, after opening an application (e.g. with a mailto: link), the redirection service will try to navigate back in the window/tab history, or, if there is no history, it will try to close the redirection window. 
+
+It will try to do this as soon as possible after the application is opened, but often we have to fall back to closing the redirection window once the user clicks on it or after a timeout.
+
+Closing doesn't work in all circumstances due to browser security stuff.
 
 ## Usage examples
 
@@ -63,7 +80,9 @@ Possible values for the `&target=` param:
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
 
 **page-title**
-- The `&page-title=` param determines what text to display inside the tab button while redirecting. It defaults to `...` (Last updated: 30.08.2024)
+(Last updated: 04.09.2024)
+- The `&page-title=` param determines what text to display inside the tab bar while redirecting. It defaults to `...` 
+- When the page-title ends with `...`, the dots will appear one-by-one. Until, after the last dot appears, the page closes.
 
 **locale**
 - Some targets take an additional `&locale=` param, which opens the target in a specific language. Valid values are Xcode language IDs for languages our project supports, such as 'pt-BR' for Brazilian Portugese or 'de' for German.
