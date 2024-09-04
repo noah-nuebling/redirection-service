@@ -218,7 +218,7 @@
                 if (document.title.endsWith('...')) {
                     document.title = document.title.slice(0, -3);
                     if (document.title.length == 0) {
-                        document.title += '.' // \u200B'; // Zero-width-space so the browser doesn't fall back to some other stuff.'
+                        document.title += '\u200B' // '.'; // Zero-width-space so the browser doesn't fall back to some other stuff.'
                         setTimeout(() => { document.title += '.' }, 1.0/4 * (postActionTimeout * 1000));
                         setTimeout(() => { document.title += '.' }, 2.0/4 * (postActionTimeout * 1000));
                         setTimeout(() => { document.title += '.' }, 3.0/4 * (postActionTimeout * 1000));
