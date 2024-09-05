@@ -88,26 +88,34 @@
             };
 
             // Localization 
-            //  -> Override map for specific locales
             if (locale != null && locale != sourceLocale) {
-
-                // General:
-                urlMap["buy-me-a-milkshake"] = `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=${locale.replace("-", "_")}`; // TODO: Make this work.
                 
-                // MMF:
-                urlMap["mmf-github"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`;
-                urlMap["mmf-acknowledgements"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Acknowledgements.md`;
-                urlMap["mmf-about"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`;
-                urlMap["mmf-questions"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#questions`;
-                urlMap["mmf2-latest"] = `https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4`; // TODO: Update if/when we localize
-
-                // MMF Feedback:
-                //    Note: We don't need to localize this since feedback-assistant supports js and can set localization itself based on browser settings.
+                // Define overrides
+                const localeOverrideMap = {
+                    // General:
+                    "buy-me-a-milkshake": `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=${locale.replace("-", "_")}`, // TODO: Make this work.
+                    
+                    // MMF:
+                    "mmf-github": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`,
+                    "mmf-acknowledgements": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Acknowledgements.md`,
+                    "mmf-about": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`,
+                    "mmf-questions": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#questions`,
+                    "mmf2-latest": `https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4`, // TODO: Update if/when we localize
+    
+                    // MMF Feedback:
+                    //    Note: We don't need to localize this since feedback-assistant supports js and can set localization itself based on browser settings.
+                    
+                    // MMF Guides:
+                    "mmf-guides": `https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides`, // TODO: Update if/when we localize
+                    "mmf-compatibility-guide": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`, // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
+                    "mmf-captured-buttons-guide": `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`, // TODO: Update once we localize this.
+                };
+    
+                // Apply overrides
+                for (const [key, value] of Object.entries(localeOverrideMap)) {
+                    urlMap[key] = value;
+                }
                 
-                // MMF Guides:
-                urlMap["mmf-guides"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides`; // TODO: Update if/when we localize
-                urlMap["mmf-compatibility-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`; // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
-                urlMap["mmf-captured-buttons-guide"] = `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`; // TODO: Update once we localize this.
             }
 
             var url;
