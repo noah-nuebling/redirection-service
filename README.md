@@ -44,7 +44,7 @@ Closing doesn't work in all circumstances due to browser security stuff.
 
 Discussion:
 
-Choose `target` names that are as specific to the use-case as possible. E.g. right now (05.09.2024) there are some places with a "Tip me on PayPal" link and some with a "Buy me a Milkshake" link. These both currently link to the same place, but we still create 2 different `target`s so we can change the independently.
+Choose `target` names that are as specific to the use-case as possible. E.g. right now (05.09.2024) there are some places with a "Tip me on PayPal" link and some places with a "Buy me a Milkshake" link. These both currently link to the same place, but we still create 2 different `target`s so we can change them independently.
 
 Possible values for the `&target=` param:
 
