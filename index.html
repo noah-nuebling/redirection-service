@@ -92,7 +92,7 @@
             if (locale != null && locale != sourceLocale) {
 
                 // General:
-                "buy-me-a-milkshake": `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=${locale.replace("-", "_")}`, // TODO: Make this work.
+                urlMap["buy-me-a-milkshake"] = `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=${locale.replace("-", "_")}`; // TODO: Make this work.
                 
                 // MMF:
                 urlMap["mmf-github"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`;
