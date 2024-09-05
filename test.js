@@ -11,6 +11,8 @@ function setUpTests() {
             In Safari we can almost reliably detect whether we are in the 'Always Allow' case or not. But it breaks if the user is moving the mouse while the page is loading.
             I didn't analyze the other browsers too much since Safari is our priority.
 
+            Idea (05.09.2024): Maybe monitoring document.activeElement could give us the needed extra info to reliably close the window right after the URL is opened?
+
     Trying to improve post-action timing:
     (Last updated: 02.09.2024)
 

@@ -65,7 +65,7 @@
                 // `macmousefix:` links
                 "mmfl-activate": "macmousefix:activate",
                 // General:
-                "buy-me-a-milkshake": "https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&lc=en", // Previously in MMF we used "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=en_US". Manage PayPal buttons here: https://www.paypal.com/donate/buttons/manage
+                "buy-me-a-milkshake": "https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&lc=en", // Manage PayPal buttons here: https://www.paypal.com/donate/buttons/manage || Previously in MMF we used: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=en_US"
                 // Non-browser:
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
                 "mailto-noah": "",
@@ -188,235 +188,271 @@
                 return;
             }
 
-
-            // Redirect
-            console.log(`Opening URL... (${url})`);
-            window.location.href = url;
-
-            // Define doPostAction()
-            console.log(`Setting up postaction: ${postaction}`);
-            const doPostAction = () => {
-                console.log(`Doing postaction: ${postaction}`);
-
-                if (postaction == "close") {
-                    window.close();
-                } else if (postaction == "back") {
-                    window.history.back();
-                }
-            }
-
-            /// Gather info
-            const browser = detectBrowser();
-            const tsStart = Date.now();
-            const pageWasLoadedHidden = window.document.hidden === true;
-
-            // 
-            // Do postaction after timeout
-            //  
-            //  Notes: 
-            //  - This is kindofa crutch: "Since we can't figure out how to close the window exactly when the URL is opened, maybe we just auto-close after a timeout."
-            //  - It seems a bit weird and unintuitive that a website closes itself automatically without direct interaction. But e.g. Firefox seems to open tabs in the background by default and if you do that and then later come back to this random blank tab without a name and it closes itself as soon as you click on it - I think that's worse. 
-            //      So we will be using the timeout. We set up a little '...' animation that gives a sort of 'countdown' until the page closes, to make it feel better.
-            //
             
-            var postActionTimeout = 10; // Set this to -1 to turn it off.
+            if (postaction == 'nothing') { 
 
-            if (postActionTimeout >= 0) {
-
-                console.log(`Setting up postAction with timeout: ${postActionTimeout}s`);
-                
-                setTimeout(doPostAction, postActionTimeout * 1000);
-
-                /// Set up little '...' animation
-                if (document.title.endsWith('...')) {
-                    document.title = document.title.slice(0, -3);
-                    if (document.title.length == 0) {
-                        document.title += '\u200B' // '.'; // Zero-width-space so the browser doesn't fall back to some other stuff.'
-                        setTimeout(() => { document.title += '.' }, 1.0/4 * (postActionTimeout * 1000));
-                        setTimeout(() => { document.title += '.' }, 2.0/4 * (postActionTimeout * 1000));
-                        setTimeout(() => { document.title += '.' }, 3.0/4 * (postActionTimeout * 1000));
-                    } else {
-                        setTimeout(() => { document.title += '.' }, 1.0/4 * (postActionTimeout * 1000));
-                        setTimeout(() => { document.title += '.' }, 2.0/4 * (postActionTimeout * 1000));
-                        setTimeout(() => { document.title += '.' }, 3.0/4 * (postActionTimeout * 1000));
-                    }
-
-                }
-
-            }
-
-            //
-            // Do postaction on event
-            //
-
-            /// Define eventHandler
-            const coolEventHandler = (ev) => {
-
-                // Get time since eventHandler was set up.
-                const dt = Date.now() - tsStart;
-
-                // Preprocess visibilityChange events
-                var evDescription = ev.type;
-                var isHideEv = false;
-                var isUnhideEv = false;
-                if (ev.type == 'visibilitychange') {
-                    if (window.document.hidden === false) {
-                        isUnhideEv = true;
-                        evDescription = 'unhide';
-                    } else {
-                        isHideEv = true;
-                        evDescription = 'hide';
-                    }
-                }
-
-                // Update static hasHidden vars
-                if (isHideEv) {
-                    coolEventHandler.hasHidden = true;
-                }
-                if (isUnhideEv) {
-                    coolEventHandler.hasUnhidden = true;
-                }
-
-                // Log
-                console.log(`Handling cool event: ${evDescription}, dt: ${dt}ms`);
-
-                if (ev.type == 'click') {                        
-
-                    // Postaction on click
-                    //  Notes:
-                    //  - Should be robust way to make the redirect page go away when the user tries to interact with it. I don't think there can be false positives. 
-                    //  - Thought about adding postaction on other events such as mouseover or mousemoved, which often occur directly after the app has been opened, but there are positives in certain scenarios, e.g. when moving the mouse after the page has opened but before the dialog has opened in Safari.
-
-                    doPostAction();
-                }
-
-                /// Browser-specific postaction logic
-
-                // Tested on: (04.09.2024)
-                //  - x Safari
-                //  - x Firefox
-                //  - x Chrome
-                //  - x Arc
-                //  - x Brave
-                //  - x Opera
-                //  - x Edge
-                //
-                //  We opened text.html and tested: 
-                //  - Open
-                //  - Tab, Background Tab (hold command/command-shift)
-                //  - Window (hold shift)
-                //  - Rightclick 
-                //      & > Tab
-                //      & > Window
-                //      & > Splitview (arc) 
-                //      & > Little Arc (arc) 
-                //  ^^ We did all these tests before and after choosing 'always allow'
+                // Handle no-postaction redirect
+                //      (Redirects that open in-browser)
                 //  
-                //  To reset 'always allow':
-                //      Safari: 
-                //          Edit ~/Library/Safari/PerSitePreferences.db
-                //              with SQL command: DELETE FROM preference_values WHERE preference_value == 'macmousefix'
-                //              Then restart Safari.
-                //              (Src: https://apple.stackexchange.com/questions/465335/how-to-retract-always-allow-safari-permission-for-opening-app)
-                //      Firefox: 
-                //          Click the thing in the url bar.
-                //      Arc:
-                //          Terminal: defaults remove company.thebrowser.Browser arcAlwaysAllowedLinkToSchemesPerSite
-                //      Chrome, Opera, Brave, Edge:
-                //          chrome://settings/clearBrowserData
-                //      
+                //  Note: 
+                //  - We need to wait until the DOM is loaded before redirecting so that we can show the timeout message in the DOM. 
+                //      The DOM-load takes like 1ms based on my testing.
 
-                if (browser == 'Safari') {
-                    //
-                    // Safari
-                    //
+                const tsStart = Date.now();
+                deferUntilDOMLoaded(() => {
+                    
+                    // Log
+                    console.log(`DOM load took: ${Date.now() - tsStart}ms`);
+                    console.log(`Opening URL:\n${url}`);
+                    
+                    // Redirect
+                    window.location.href = url;
 
-                    // Note: (04.09.2024) Right now, when using right-click > 'Open Link in New Window' or 'Open Link in New Tab', focus and blur events don't seem to be sent at all, also after the 'Allow Opening?' dialog is dismissed, it selects the URL bar for text entry??
-                    //      This even happens when deleting everything between the <script> tags.
-                    //      Very weird but I have no idea for a fix rn.
-                    //      When opening in a new window/tab *without* the right-click menu, none of this seems to happen.
+                    // Show message after timeout
+                    //  Note: We saw the paypal-donation-link time out repeatedly on 05.09.2024
+                    const timeout = 5.0 * 1000;
+                    setTimeout(() => {
+                        appendHTMLToMessage(`You were being redirected to the page:<br><br><a href="${url}">${url}</a><br><br>But it's taking very long to respond.<br><br>There might be a problem with your internet connection.<br>If this problem persists, please <a href="https://redirect.macmousefix.com/?target=mailto-noah">let me know</a>. Thank you!`);
+                    }, timeout);
+                    playDotDotDotAnimation(timeout);
+                });
 
-                    if (ev.type == 'focus' && dt > 200) { // Note: (04.09.2024) Ignore focus events within 200ms of setting up the event handler. (100ms seems enough but using 200ms to be sure) This prevents the page sometimes immediately closing when after opening index.html in a new window after clicking target='_blank' link.
+            } else {
+
+                // Redirect
+                window.location.href = url;
+
+                // Handle redirect with postaction
+                //      (Redirects that open an app)
+
+                // Define doPostAction()
+                console.log(`Setting up postaction: ${postaction}`);
+                const doPostAction = () => {
+                    console.log(`Doing postaction: ${postaction}`);
+
+                    if (postaction == "close") {
+                        window.close();
+                    } else if (postaction == "back") {
+                        window.history.back();
+                    }
+                }
+
+                /// Gather info
+                const browser = detectBrowser();
+                const tsStart = Date.now();
+                const pageWasLoadedHidden = window.document.hidden === true;
+
+                // 
+                // Do postaction after timeout
+                //  
+                //  Notes: 
+                //  - This is kindofa crutch: "Since we can't figure out how to close the window exactly when the URL is opened, maybe we just auto-close after a timeout."
+                //  - It seems a bit weird and unintuitive that a website closes itself automatically without direct interaction. But e.g. Firefox seems to open tabs in the background by default and if you do that and then later come back to this random blank tab without a name and it closes itself as soon as you click on it - I think that's worse. 
+                //      So we will be using the timeout. We set up a little '...' animation that gives a sort of 'countdown' until the page closes, to make it feel better.
+                //
+                
+                var postActionTimeout = 10; // Set this to -1 to turn it off.
+
+                if (postActionTimeout >= 0) {
+
+                    console.log(`Setting up postAction with timeout: ${postActionTimeout}s`);
+                    
+                    setTimeout(doPostAction, postActionTimeout * 1000);
+
+                    // Set up little '...' animation
+                    playDotDotDotAnimation(postActionTimeout * 1000);
+
+                }
+
+                //
+                // Do postaction on event
+                //
+
+                // Define eventHandler
+                const coolEventHandler = (ev) => {
+
+                    // Get time since eventHandler was set up.
+                    const dt = Date.now() - tsStart;
+
+                    // Preprocess visibilityChange events
+                    var evDescription = ev.type;
+                    var isHideEv = false;
+                    var isUnhideEv = false;
+                    if (ev.type == 'visibilitychange') {
+                        if (window.document.hidden === false) {
+                            isUnhideEv = true;
+                            evDescription = 'unhide';
+                        } else {
+                            isHideEv = true;
+                            evDescription = 'hide';
+                        }
+                    }
+
+                    // Update static hasHidden vars
+                    if (isHideEv) {
+                        coolEventHandler.hasHidden = true;
+                    }
+                    if (isUnhideEv) {
+                        coolEventHandler.hasUnhidden = true;
+                    }
+
+                    // Log
+                    console.log(`Handling cool event: ${evDescription}, dt: ${dt}ms`);
+
+                    if (ev.type == 'click') {                        
+
+                        // Postaction on click
+                        //  Notes:
+                        //  - Should be robust way to make the redirect page go away when the user tries to interact with it. I don't think there can be false positives. 
+                        //  - Thought about adding postaction on other events such as mouseover or mousemoved, which often occur directly after the app has been opened, but there are positives in certain scenarios, e.g. when moving the mouse after the page has opened but before the dialog has opened in Safari.
+
                         doPostAction();
                     }
 
-                } else if (browser == 'Firefox') {
-                    //
-                    // Firefox
-                    //
+                    /// Browser-specific postaction logic
 
-                    // Notes:
-                    //  - on ```if (pageWasLoadedHidden ...)```: postaction is not triggered when opening the redirection service tab in the background (04.09.2024) Tried fix by listening to mouseover, but that leads to false positives in other scenarios.
-                    //  - We used to have the skip the first `focus` event and only react to the second one on FF (we did that before by waiting 10ms I think). Not sure why not necessary anymore. (As of 04.09.2024)
+                    // Tested on: (04.09.2024)
+                    //  - x Safari
+                    //  - x Firefox
+                    //  - x Chrome
+                    //  - x Arc
+                    //  - x Brave
+                    //  - x Opera
+                    //  - x Edge
+                    //
+                    //  We opened text.html and tested: 
+                    //  - Open
+                    //  - Tab, Background Tab (hold command/command-shift)
+                    //  - Window (hold shift)
+                    //  - Rightclick 
+                    //      & > Tab
+                    //      & > Window
+                    //      & > Splitview (arc) 
+                    //      & > Little Arc (arc) 
+                    //  ^^ We did all these tests before and after choosing 'always allow'
+                    //  
+                    //  To reset 'always allow':
+                    //      Safari: 
+                    //          Edit ~/Library/Safari/PerSitePreferences.db
+                    //              with SQL command: DELETE FROM preference_values WHERE preference_value == 'macmousefix'
+                    //              Then restart Safari.
+                    //              (Src: https://apple.stackexchange.com/questions/465335/how-to-retract-always-allow-safari-permission-for-opening-app)
+                    //      Firefox: 
+                    //          Click the thing in the url bar.
+                    //      Arc:
+                    //          Terminal: defaults remove company.thebrowser.Browser arcAlwaysAllowedLinkToSchemesPerSite
+                    //      Chrome, Opera, Brave, Edge:
+                    //          chrome://settings/clearBrowserData
+                    //      
 
-                    if (pageWasLoadedHidden && coolEventHandler.hasUnhidden) {
-                        if (ev.type == 'mouseover' || ev.type == 'focus') {
+                    if (browser == 'Safari') {
+                        //
+                        // Safari
+                        //
+
+                        // Note: (04.09.2024) Right now, when using right-click > 'Open Link in New Window' or 'Open Link in New Tab', focus and blur events don't seem to be sent at all, also after the 'Allow Opening?' dialog is dismissed, it selects the URL bar for text entry??
+                        //      This even happens when deleting everything between the <script> tags.
+                        //      Very weird but I have no idea for a fix rn.
+                        //      When opening in a new window/tab *without* the right-click menu, none of this seems to happen.
+
+                        if (ev.type == 'focus' && dt > 200) { // Note: (04.09.2024) Ignore focus events within 200ms of setting up the event handler. (100ms seems enough but using 200ms to be sure) This prevents the page sometimes immediately closing when after opening index.html in a new window after clicking target='_blank' link.
                             doPostAction();
                         }
-                    } else {
-                        if (ev.type == 'focus') { 
-                            doPostAction();
+
+                    } else if (browser == 'Firefox') {
+                        //
+                        // Firefox
+                        //
+
+                        // Notes:
+                        //  - on ```if (pageWasLoadedHidden ...)```: postaction is not triggered when opening the redirection service tab in the background (04.09.2024) Tried fix by listening to mouseover, but that leads to false positives in other scenarios.
+                        //  - We used to have the skip the first `focus` event and only react to the second one on FF (we did that before by waiting 10ms I think). Not sure why not necessary anymore. (As of 04.09.2024)
+
+                        if (pageWasLoadedHidden && coolEventHandler.hasUnhidden) {
+                            if (ev.type == 'mouseover' || ev.type == 'focus') {
+                                doPostAction();
+                            }
+                        } else {
+                            if (ev.type == 'focus') { 
+                                doPostAction();
+                            }
                         }
-                    }
-                    
-                } else {
-                    //
-                    // Other browsers
-                    //
-                    
-                    // Notes: 
-                    //  - We had specialized code for Chrome that worked better but we could not distinguish Arc from Chrome, so we need one case to cover both of them. (Not event https://www.whatismybrowser.com/ can distinguish Arc)
-                    //  - All the other browsers we tested are Chromium based and also work fine with this logic. I don't really think it's worth building special hacks for anything other than Chrome and Safari. I guess we did Firefox cause it's an og browser.
-
-
-                    // Get time *since* intial unhideEv
-                    var dtSinceInitialUnhide = (coolEventHandler.initialUnhideTs === undefined) ? undefined : (Date.now() - coolEventHandler.initialUnhideTs);
-
-                    // Get time *of* intial unhideEv
-                    if (pageWasLoadedHidden && isUnhideEv && coolEventHandler.initialUnhideTs === undefined) { // When all these conditions are true, we know the page was invisible as it was loaded, and now became visible for the first time
-                        coolEventHandler.initialUnhideTs = Date.now();
-                    }
-
-                    if (ev.type == 'focus') {
                         
-                        // Postaction on focus
+                    } else {
+                        //
+                        // Other browsers
+                        //
+                        
+                        // Notes: 
+                        //  - We had specialized code for Chrome that worked better but we could not distinguish Arc from Chrome, so we need one case to cover both of them. (Not event https://www.whatismybrowser.com/ can distinguish Arc)
+                        //  - All the other browsers we tested are Chromium based and also work fine with this logic. I don't really think it's worth building special hacks for anything other than Chrome and Safari. I guess we did Firefox cause it's an og browser.
 
-                        // Guard special conditions
-                        //  Notes: 
-                        //      - Arc: Ignoring focus 500ms after page load. Otherwise, when opening the redirect page in a new window, it will immediately close (04.09.2024)
-                        //      - Chrome: Ignore focus 200ms after the initial unhide event. In Chrome, this prevents page from closing immediately after it's been opened in a background tab and then clicked on. Afterwards the focus event isn't fired like normal it seems. On Chrome we could get good behaviour even without the focus event by doing postaction on mousemoved (and iirc blur) in case the tab was opened in the background, but iirc we saw this break on Arc so we disabled that.
-                        //      - When you edit this, keep in mind: 
-                        //          Making the postaction happen later is safer than making it happen earlier. That's because doing the postaction later only makes the redirect-page linger around the users screen a bit longer, while doing the postaction too early might prevent the redirect from working at all. So making the postaction happen later is safer. If we make the postaction happen earlier, we should thoroughly test it to see if the redirect is broken.
-                        //          Concretely, when you add extra cases where we *don't* do the postaction, that can make the postaction happen *later* (never earlier). On the other hand, when adding extra cases where we *do* do the postaction, that can make the postaction happen *earlier* (never later)
-                        if (dt <= 500) { return; }
-                        if (dtSinceInitialUnhide !== undefined && dtSinceInitialUnhide <= 200) { return; }
+                        // Get time *since* intial unhideEv
+                        var dtSinceInitialUnhide = (coolEventHandler.initialUnhideTs === undefined) ? undefined : (Date.now() - coolEventHandler.initialUnhideTs);
 
-                        // Do post action
-                        doPostAction();
-                    }
-                }         
+                        // Get time *of* intial unhideEv
+                        if (pageWasLoadedHidden && isUnhideEv && coolEventHandler.initialUnhideTs === undefined) { // When all these conditions are true, we know the page was invisible as it was loaded, and now became visible for the first time
+                            coolEventHandler.initialUnhideTs = Date.now();
+                        }
+
+                        if (ev.type == 'focus') {
+                            
+                            // Postaction on focus
+
+                            // Guard special conditions
+                            //  Notes: 
+                            //      - Arc: Ignoring focus 500ms after page load. Otherwise, when opening the redirect page in a new window, it will immediately close (04.09.2024)
+                            //      - Chrome: Ignore focus 200ms after the initial unhide event. In Chrome, this prevents page from closing immediately after it's been opened in a background tab and then clicked on. Afterwards the focus event isn't fired like normal it seems. On Chrome we could get good behaviour even without the focus event by doing postaction on mousemoved (and iirc blur) in case the tab was opened in the background, but iirc we saw this break on Arc so we disabled that.
+                            //      - When you edit this, keep in mind: 
+                            //          Making the postaction happen later is safer than making it happen earlier. That's because doing the postaction later only makes the redirect-page linger around the users screen a bit longer, while doing the postaction too early might prevent the redirect from working at all. So making the postaction happen later is safer. If we make the postaction happen earlier, we should thoroughly test it to see if the redirect is broken.
+                            //          Concretely, when you add extra cases where we *don't* do the postaction, that can make the postaction happen *later* (never earlier). On the other hand, when adding extra cases where we *do* do the postaction, that can make the postaction happen *earlier* (never later)
+                            if (dt <= 500) { return; }
+                            if (dtSinceInitialUnhide !== undefined && dtSinceInitialUnhide <= 200) { return; }
+
+                            // Do post action
+                            doPostAction();
+                        }
+                    }         
+                }
+
+                // Schedule eventHandler
+                const windowEventList = ['blur', 'focus', 'mouseover', /*'mousemove'*/];
+                const documentEventList = ['visibilitychange', 'click'];
+                const bodyEventList = [];
+                document.onclick
+                console.log(`Setting up postAction with event handler listening to: ${windowEventList} (on window) and ${documentEventList} (on document)`);
+                windowEventList.forEach(eventStr => {
+                    window.addEventListener(eventStr, coolEventHandler);
+                });
+                documentEventList.forEach(eventStr => {
+                    window.document.addEventListener(eventStr, coolEventHandler);
+                });
+                bodyEventList.forEach(eventStr => {
+                    window.document.body.addEventListener(eventStr, coolEventHandler);
+                });
             }
-
-            // Schedule eventHandler
-            const windowEventList = ['blur', 'focus', 'mouseover', /*'mousemove'*/];
-            const documentEventList = ['visibilitychange', 'click'];
-            const bodyEventList = [];
-            document.onclick
-            console.log(`Setting up postAction with event handler listening to: ${windowEventList} (on window) and ${documentEventList} (on document)`);
-            windowEventList.forEach(eventStr => {
-                window.addEventListener(eventStr, coolEventHandler);
-            });
-            documentEventList.forEach(eventStr => {
-                window.document.addEventListener(eventStr, coolEventHandler);
-            });
-            bodyEventList.forEach(eventStr => {
-                window.document.body.addEventListener(eventStr, coolEventHandler);
-            });
         }
 
         //
         // Helper functions
         //
+
+        function playDotDotDotAnimation(duration) {
+
+            if (document.title.endsWith('...')) {
+                document.title = document.title.slice(0, -3);
+                if (document.title.length == 0) {
+                    document.title += '\u200B' // '.'; // Zero-width-space so the browser doesn't fall back to some other stuff.'
+                    setTimeout(() => { document.title += '.' }, 1.0/4 * duration);
+                    setTimeout(() => { document.title += '.' }, 2.0/4 * duration);
+                    setTimeout(() => { document.title += '.' }, 3.0/4 * duration);
+                } else {
+                    setTimeout(() => { document.title += '.' }, 1.0/4 * duration);
+                    setTimeout(() => { document.title += '.' }, 2.0/4 * duration);
+                    setTimeout(() => { document.title += '.' }, 3.0/4 * duration);
+                }
+            }
+        }
 
         function deferUntilDOMLoaded(callback) {
             if (document.readyState !== "loading") {
@@ -439,6 +475,11 @@
         function appendToMessage(appendix) {
             deferUntilDOMLoaded(() => {
                 document.getElementById("message").innerText += appendix;
+            });
+        }
+        function appendHTMLToMessage(appendix) {
+            deferUntilDOMLoaded(() => {
+                document.getElementById("message").innerHTML += appendix;
             });
         }
 
