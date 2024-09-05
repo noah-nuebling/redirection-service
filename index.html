@@ -65,7 +65,7 @@
                 // `macmousefix:` links
                 "mmfl-activate": "macmousefix:activate",
                 // General:
-                "buy-me-a-milkshake": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=en_US",
+                "buy-me-a-milkshake": "https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&&lc=en", //"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=en_US",
                 // Non-browser:
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
                 "mailto-noah": "",
@@ -93,7 +93,7 @@
                 // Define overrides
                 const localeOverrideMap = {
                     // General:
-                    "buy-me-a-milkshake": `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=${locale.replace("-", "_")}`, // TODO: Make this work.
+                    "buy-me-a-milkshake": `https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&&lc=${locale.replace("-", "_")}`,
                     
                     // MMF:
                     "mmf-github": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`,
