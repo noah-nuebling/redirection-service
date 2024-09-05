@@ -62,23 +62,25 @@
 
             // Map target to url
             var urlMap = {
-                /// `macmousefix:` links
+                // `macmousefix:` links
                 "mmfl-activate": "macmousefix:activate",
-                /// Non-browser:
+                // General:
+                "buy-me-a-milkshake": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=en_US",
+                // Non-browser:
                 "macos-settings-loginitems": "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
                 "mailto-noah": "",
-                /// MMF:
+                // MMF:
                 "mmf-github-readme": "https://github.com/noah-nuebling/mac-mouse-fix/",
                 "mmf-acknowledgements": "https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Acknowledgements.md",
                 "mmf-about": "https://github.com/noah-nuebling/mac-mouse-fix",
                 "mmf-questions": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
                 "mmf2-latest": "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.4",
                 "mmf-localization-contribution": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731",
-                /// MMF Feedback:
+                // MMF Feedback:
                 "mmf-feedback-bug-report": "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=bug-report",
                 "mmf-feedback-feature-request": "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=feature-request",
                 "mmf-feedback-other": "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=other",
-                /// MMF Guides:
+                // MMF Guides:
                 "mmf-ventura-enabling-guide": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/861", 
                 "mmf-guides": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides",
                 "mmf-compatibility-guide": "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#macos-compatibility",
@@ -89,6 +91,9 @@
             //  -> Override map for specific locales
             if (locale != null && locale != sourceLocale) {
 
+                // General:
+                "buy-me-a-milkshake": `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=${locale.replace("_", "-")}`, // TODO: Make this work.
+                
                 // MMF:
                 urlMap["mmf-github-readme"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`;
                 urlMap["mmf-acknowledgements"] = `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Acknowledgements.md`;
