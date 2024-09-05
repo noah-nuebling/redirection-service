@@ -83,13 +83,14 @@ Possible values for the `&target=` param:
   - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
   - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param. 
 - **MMF Guides:**
-    - We don't localize this one, localizers need to speak English anyways.
-  - `mmf-ventura-enabling-guide`: Workaround for problems with enabling the app on macOS 13 Ventura and macOS 14 Sonoma. Does **not** take `&locale` param
-    - We don't localize this one since it's long and will soon be outdated since it only applies to macOS 13 Ventura and 14 Sonoma, and was fixed in macOS 15 Sequoia.
+  - `mmf-guides-and-community` Used for the "Help > View Guides or Ask the Community" menu item inside MMF. Redirects to GitHub Discussions as of 05.09.2024. Takes `&locale=` param.
+    - Probably not feasible to localize this. Think we should not use this inside MMF.
   - `mmf-guides`: Overview of available guides for MMF. Takes `&locale=` param.
   - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.) 
   - `mmf-captured-buttons-guide`: Explanation of the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
+  - `mmf-ventura-enabling-guide`: Workaround for problems with enabling the app on macOS 13 Ventura and macOS 14 Sonoma. Takes `&locale` param
+    - As of 05.09.2024, I don't plan on actually localizing this, since it's a lot of text and will soon be outdated since it only applies to macOS 13 Ventura and 14 Sonoma (problem was fixed in macOS 15 Sequoia)
   
 **message**
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
