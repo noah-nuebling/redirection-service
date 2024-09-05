@@ -65,13 +65,14 @@ Possible values for the `&target=` param:
     - This is useful because this is the latest free version of MMF.
     - (Not sure if we can ever feasibly localize GitHub release notes. Maybe with AI or something. But it doesn't hurt to pass in a locale, in case we figure something out.)
     - (NOTE: **Update this** when you release new version of MMF 2!)
+  - `mmf-localization-contribution` Place where people can help to translate Mac Mouse Fix. Does **not** take `&locale=` param.
+    - This is the 'localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to CrowdIn/Localazy or something.
 - **MMF Feedback:**
   - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
     - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
   - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
   - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param. 
 - **MMF Guides:**
-  - `mmf-localization-guide`: Instructions for helping to translate Mac Mouse Fix. Does **not** take `&locale=` param.
     - We don't localize this one, localizers need to speak English anyways.
   - `mmf-ventura-enabling-guide`: Workaround for problems with enabling the app on macOS 13 Ventura and macOS 14 Sonoma. Does **not** take `&locale` param
     - We don't localize this one since it's long and will soon be outdated since it only applies to macOS 13 Ventura and 14 Sonoma, and was fixed in macOS 15 Sequoia.
