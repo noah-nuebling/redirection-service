@@ -93,7 +93,7 @@
                 // Define overrides
                 const localeOverrideMap = {
                     // General:
-                    "buy-me-a-milkshake": `https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&&lc=${locale.replace("-", "_")}`,
+                    "buy-me-a-milkshake": `https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&&lc=${locale.replace("-", "_")}`, // Note: If you're testing this - This only works for the locales that PayPal 'allows' which seems to depend on the browser and/or system locale.
                     
                     // MMF:
                     "mmf-github": `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`,
