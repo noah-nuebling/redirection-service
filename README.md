@@ -66,7 +66,8 @@ Possible values for the `&target=` param:
     - (Not sure if we can ever feasibly localize GitHub release notes. Maybe with AI or something. But it doesn't hurt to pass in a locale, in case we figure something out.)
     - (NOTE: **Update this** when you release new version of MMF 2!)
   - `mmf-localization-contribution` Place where people can help to translate Mac Mouse Fix. Does **not** take `&locale=` param.
-    - This is the 'localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to CrowdIn/Localazy or something.
+    - This is the 'Localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to Crowd In/Localazy or something.
+    - Not localizing this since it is only directed towards people who speak English.
 - **MMF Feedback:**
   - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
     - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
