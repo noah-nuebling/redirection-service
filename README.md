@@ -56,7 +56,7 @@ Possible values for the `&target=` param:
     - You can also prefill the subject by adding a `&subject` query param.
     - You can prefill the body by adding a `&body` query param
 - **MMF:**
-  - `mmf-github-readme` redirects to the MMF GitHub Readme. Takes `&locale=` param.
+  - `mmf-github` redirects to the MMF GitHub Readme. Takes `&locale=` param.
     - We plan to use this for the 'Check it out on GitHub' link inside the MMF app. (Last updated: 01.09.2024)
   - `mmf-acknowledgements` redirects to MMF Acknowledgements page. Takes `&locale=` param.
   - `mmf-about` Links to the about document for Mac Mouse Fix. Takes `&locale=` param.
