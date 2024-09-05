@@ -47,6 +47,8 @@ Possible values for the `&target=` param:
 - **macmousefix: links**
   - `mmfl-activate` opens the activateLicense screen inside the MMF app.
     - We already have a redirect for the same thing at `http://noah-nuebling.github.io/mac-mouse-fix-website/activate`. We use that link on the Gumroad post-checkout page. Not sure if anywhere else. Using `mmfl-activate` is preferable going forward, so we have all the redirects in one place.
+- **General**
+  - `buy-me-a-milkshake` place where people can 'buy me a milkshake'. Takes `&locale=` param.
 - **Non-browser:**
   - `macos-settings-loginitems` opens macOS login items settings
   - `mailto-noah` Composes an email to my public email account.
