@@ -8,7 +8,7 @@ This simple redirection service should serve as a workaround.
 
 Later we started trying to use this for pretty much all our internal project links, so we can update links retroactively and easily link to a specific localization of a Document.
 
-## redirect.macmousefix.com && MMF Favicon
+## Is this part of MMF?
 
 This was initially intended as a general redirection service that is not specifically part of the mac-mouse-fix project.
 That's also why all the `&target=`s that relate to mmf have `mmf` in their name.
