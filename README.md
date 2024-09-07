@@ -77,11 +77,15 @@ Possible values for the `&target=` param:
   - `mmf-localization-contribution` Place where people can help to translate Mac Mouse Fix. Does **not** take `&locale=` param.
     - This is the 'Localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to Crowd In/Localazy or something.
     - Not localizing this since it is only directed towards people who speak English.
+  - `mmf-help-and-feedback` Page for accessing help or, or giving Feedback. Takes `&locale=` param. 
+    - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes any sense to use redirection-service for this since we can easily just update the GH Readme, and it's unlikely we'll use this anywhere else.
+  - `mmf-releases`: Overview of MMF releases. Takes `&locale=` param.
+    - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes sense to use redirection-service, since I feel it's unlikely we'll move this or make it localizable.
 - **MMF Feedback:**
   - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
     - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
   - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
-  - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param. 
+  - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param.
 - **MMF Guides:**
   - `mmf-guides-and-community` Used for the "Help > View Guides or Ask the Community" menu item inside MMF. Redirects to GitHub Discussions as of 05.09.2024. Takes `&locale=` param.
     - Probably not feasible to localize this. Think we should not use this inside MMF.
