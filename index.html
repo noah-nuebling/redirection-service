@@ -68,7 +68,7 @@
                 "buy-me-a-milkshake":               "https://www.paypal.com/donate/?hosted_button_id=ARSTVR6KFB524&lc=en", // Manage PayPal buttons here: https://www.paypal.com/donate/buttons/manage || Previously in MMF we used: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARSTVR6KFB524&source=url&lc=en_US"
                 // Non-browser:
                 "macos-settings-loginitems":        "x-apple.systempreferences:com.apple.LoginItems-Settings.extension",
-                "mailto-noah":                      "",
+                "mailto-noah":                      "", // Custom impl below
                 // MMF:
                 "mmf-github":                       "https://github.com/noah-nuebling/mac-mouse-fix/",
                 "mmf-acknowledgements":             "https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Acknowledgements.md",
@@ -78,6 +78,7 @@
                 "mmf-localization-contribution":    "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731",
                 "mmf-help-and-feedback":            "https://github.com/noah-nuebling/mac-mouse-fix/issues/new/choose",
                 "mmf-releases":                     "https://github.com/noah-nuebling/mac-mouse-fix/releases",
+                "mmf-apply-for-refund":             "", // Custom impl below
                 // MMF Feedback:
                 "mmf-feedback-bug-report":          "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=bug-report",
                 "mmf-feedback-feature-request":     "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=feature-request",
@@ -126,12 +127,50 @@
             var url;
             if (Object.hasOwn(urlMap, target)) {
 
-                if (target == "mailto-noah") {
-                    // Handle email separately from urlMap to prevent automatic crawling of the address, and to allow custom param for prefilling email subject.
-                    const subject = encodeURIComponent(getQueryParam("subject") ?? "");
-                    const body = encodeURIComponent(getQueryParam("body") ?? "");
+                function getMailToNoah(subject, body) {
+                    const subject = encodeURIComponent(subject ?? "");
+                    const body = encodeURIComponent(body ?? "");
                     const e1 = "com"; const e2 = "gmail"; const e3 = "public"; const e4 = ".n"; const e5 = "noah";
-                    url = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}&body=${body}`;
+                    const result = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}&body=${body}`;
+                    return result;
+                }
+                
+                if (target == "mailto-noah") {
+
+                    /* Mailto Noah */
+                    
+                    // Handle email separately from urlMap to prevent automatic crawling of the address, and to allow custom param for prefilling email subject.
+                    url = getMailToNoah(getQueryParam("subject"), getQueryParam("body")); 
+                    
+                } else if (target == "mmf-apply-for-refund") {
+
+                    /* Refunds */
+                    
+                    // Previously we used this monstrosity: .../?message=&target=mailto-noah&subject=Mac%20Mouse%20Fix%20Refund&body=Hi%20there%21%20To%20request%20a%20refund%2C%20please%20answer%20the%20following%20questions%2C%20and%20then%20send%20off%20this%20email%3A%0A%0A%2A%2AWhy%20are%20you%20requesting%20a%20refund%3F%2A%2A%0A%0A%28Fill%20in%20here%29%0A%0A%2A%2AWhat%20is%20the%20email%20address%20where%20you%20received%20your%20license%20key%3F%2A%2A%0A%0A%28Fill%20in%20here%29%0A%0A%2A%2AAnything%20else%20you%27d%20like%20to%20say%3F%2A%2A%0A%0A%28Fill%20in%20here%29%0A%0A---%0A%0AI%27ll%20do%20my%20best%20to%20get%20back%20to%20you%20soon%2C%20and%20to%20improve%20the%20experience%20of%20using%20Mac%20Mouse%20Fix.%20%0AI%20hope%20a%20refund%20is%20an%20ok%20solution%20for%20you%2C%20and%20thank%20you%20for%20your%20feedback.
+                    
+                    const subject = "Mac Mouse Fix Refund"
+                    const body = removeIndent(`
+                    Hi there! To request a refund, please answer the following questions, and then send off this email:
+                    **Why are you requesting a refund?**
+                    
+                    (Fill in here)
+                    
+                    **What is the email address where you received your license key?**
+                    
+                    (Fill in here)
+                    
+                    **Anything else you'd like to say?**
+                    
+                    (Fill in here)
+                    
+                    ---
+                    
+                    I'll do my best to get back to you soon, and to improve the experience of using Mac Mouse Fix. ()
+                    I hope a refund is an ok solution for you, and thank you for your feedback.
+                    `).trim();
+                    
+                    url = getMailToNoah(body, subject);
+                    
                 } else {
                     url = urlMap[target];
                 }
@@ -442,6 +481,20 @@
         // Helper functions
         //
 
+        function removeIndent(str) {
+            // Src: https://stackoverflow.com/a/78238661/10601702
+            
+            const smallestIndent = Math.min(...str
+                .split('\n')
+                .filter(line => line.trim())
+                .map(line => line.match(/^\s*/)[0].length)
+            );
+            return str
+                .split('\n')
+                .map(line => line.slice(smallestIndent))
+                .join('\n');
+        }
+        
         function playDotDotDotAnimation(duration) {
 
             if (document.title.endsWith('...')) {
