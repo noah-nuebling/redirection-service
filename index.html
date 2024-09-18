@@ -128,8 +128,8 @@
             if (Object.hasOwn(urlMap, target)) {
 
                 function getMailToNoah(subject, body) {
-                    const subject = encodeURIComponent(subject ?? "");
-                    const body = encodeURIComponent(body ?? "");
+                    subject = encodeURIComponent(subject ?? "");
+                    body = encodeURIComponent(body ?? "");
                     const e1 = "com"; const e2 = "gmail"; const e3 = "public"; const e4 = ".n"; const e5 = "noah";
                     const result = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}&body=${body}`;
                     return result;
