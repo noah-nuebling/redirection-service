@@ -81,6 +81,8 @@ Possible values for the `&target=` param:
     - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes any sense to use redirection-service for this since we can easily just update the GH Readme, and it's unlikely we'll use this anywhere else.
   - `mmf-releases`: Overview of MMF releases. Takes `&locale=` param.
     - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes sense to use redirection-service, since I feel it's unlikely we'll move this or make it localizable.
+  - `mmf-apply-for-refund` Place where users can apply for a refund.
+     - As of Sep 2024, this drafts an email to me, prefilled with some questions.
 - **MMF Feedback:**
   - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
     - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
