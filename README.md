@@ -88,6 +88,8 @@ Possible values for the `&target=` param:
     - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
   - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
   - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param.
+- **MMF Help:**
+  - `mmf-authorize-accessibility-help` Opens when you click 'Help' on the 'Accessibility Sheet' in Mac Mouse Fix. Redirects to GitHub Discussion #101 as of Sep 2024. Takes `&locale=` param.
 - **MMF Guides:**
   - `mmf-guides-and-community` Used for the "Help > View Guides or Ask the Community" menu item inside MMF. Redirects to GitHub Discussions as of 05.09.2024. Takes `&locale=` param.
     - Probably not feasible to localize this. Think we should not use this inside MMF.
