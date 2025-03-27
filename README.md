@@ -70,10 +70,6 @@ Possible values for the `&target=` param:
     - At the time of writing this is the GitHub readme. (Last updated: 02.09.2024) (Later we might want to move this to the MMF website.)
   - `mmf-questions` redirects to where common questions that users might have are answered. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.)
-  - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2. Takes `&locale=` param.
-    - This is useful because this is the latest free version of MMF.
-    - (Not sure if we can ever feasibly localize GitHub release notes. Maybe with AI or something. But it doesn't hurt to pass in a locale, in case we figure something out.)
-    - (NOTE: **Update this** when you release new version of MMF 2!)
   - `mmf-localization-contribution` Place where people can help to translate Mac Mouse Fix. Does **not** take `&locale=` param.
     - This is the 'Localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to Crowd In/Localazy or something.
     - Not localizing this since it is only directed towards people who speak English.
@@ -99,7 +95,13 @@ Possible values for the `&target=` param:
   - `mmf-captured-buttons-guide`: Explanation of the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
   - `mmf-ventura-enabling-guide`: Workaround for problems with enabling the app on macOS 13 Ventura and macOS 14 Sonoma. Takes `&locale` param
     - As of 05.09.2024, I don't plan on actually localizing this, since it's a lot of text and will soon be outdated since it only applies to macOS 13 Ventura and 14 Sonoma (problem was fixed in macOS 15 Sequoia)
-  
+- **MMF Releases**
+  - `mmf-releases-overview` Page where you can browse releases of MMF. Takes `&locale=` param.
+  - `mmf-release` Specific release of MMF, including release-notes and download link. Takes `&locale=` param.
+    - Takes `&tag=` to specify MMF version. (Values are git-tags, e.g. `&tag=3.0.4-Beta-1`)
+  - `mmf2-latest` redirects to the GitHub release of the latest version of MMF 2. Takes `&locale=` param.
+    - This is useful because this is the latest free version of MMF.
+    - (NOTE: **Update this** when you release new version of MMF 2!)
 **message**
 - The `&message=` param determines what text to display in the window while redirecting. Can be URL encoded with %20 and stuff or left blank.
 

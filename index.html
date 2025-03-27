@@ -45,10 +45,11 @@
         function redirect() {
 
             // Parse params
-            var target = getQueryParam("target");
-            var customPageTitle = getQueryParam("page-title");
-            var customMessage = getQueryParam("message");
-            var locale = getQueryParam("locale");
+            let target          = getQueryParam("target");
+            let customPageTitle = getQueryParam("page-title");
+            let customMessage   = getQueryParam("message");
+            let locale          = getQueryParam("locale");
+            let tag             = getQueryParam("tag");
             if (!target) {
                 appendToMessage("No redirection target provided.\n\nDocumentation at: https://github.com/noah-nuebling/redirection-service");
                 return
@@ -74,7 +75,6 @@
                 "mmf-acknowledgements":             "https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Acknowledgements.md",
                 "mmf-about":                        "https://github.com/noah-nuebling/mac-mouse-fix",
                 "mmf-questions":                    "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
-                "mmf2-latest":                      "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.5",
                 "mmf-localization-contribution":    "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731",
                 "mmf-help-and-feedback":            "https://github.com/noah-nuebling/mac-mouse-fix/issues/new/choose",
                 "mmf-releases":                     "https://github.com/noah-nuebling/mac-mouse-fix/releases",
@@ -91,6 +91,10 @@
                 "mmf-guides":                       "https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides",
                 "mmf-compatibility-guide":          "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#macos-compatibility",
                 "mmf-captured-buttons-guide":       "https://github.com/noah-nuebling/mac-mouse-fix/discussions/112",
+                // MMF Releases
+                "mmf-releases-overview":            "https://github.com/noah-nuebling/mac-mouse-fix/releases", 
+                "mmf-release":                      `https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/${tag}`,
+                "mmf2-latest":                      "https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.5",
             };
 
             // Localization 
@@ -106,20 +110,25 @@
                     "mmf-acknowledgements":     `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Acknowledgements.md`,
                     "mmf-about":                `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md`,
                     "mmf-questions":            `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#questions`,
-                    "mmf2-latest":              `https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.2.5`, // TODO: Update if/when we localize
     
                     // MMF Feedback:
                     //    Note: We don't need to localize this since feedback-assistant supports js and can set localization itself based on browser settings.
 
                     // MMF Help:
-                    "mmf-authorize-accessibility-help": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/101", // TODO: Update if/when we localize.
+                    "mmf-authorize-accessibility-help": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/101",               // TODO: Update if/when we localize.
                     
                     // MMF Guides:
-                    "mmf-guides-and-community":     "https://github.com/noah-nuebling/mac-mouse-fix/discussions", // TODO: Update if/when we localize.
-                    "mmf-guides":                   `https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides`, // TODO: Update if/when we localize
-                    "mmf-compatibility-guide":      `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`, // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
-                    "mmf-captured-buttons-guide":   `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`, // TODO: Update once we localize this.
-                    "mmf-ventura-enabling-guide":   "https://github.com/noah-nuebling/mac-mouse-fix/discussions/861", // TODO: Update if/when we localize
+                    "mmf-guides-and-community":         "https://github.com/noah-nuebling/mac-mouse-fix/discussions",                   // TODO: Update if/when we localize.
+                    "mmf-guides":                       `https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides`, // TODO: Update if/when we localize
+                    "mmf-compatibility-guide":          `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/${locale}/Readme.md#macos-compatibility`, // Note: The #macos-compatibility fragment works in any language, because we added non-localized anchor links to the .md files (such as `<a name="macos-compatibility"></a>`)
+                    "mmf-captured-buttons-guide":       `https://github.com/noah-nuebling/mac-mouse-fix/discussions/112`,               // TODO: Update once we localize this.
+                    "mmf-ventura-enabling-guide":       "https://github.com/noah-nuebling/mac-mouse-fix/discussions/861",               // TODO: Update if/when we localize
+
+                    // MMF Releases
+                    "mmf-releases-overview":        `https://github.com/noah-nuebling/mac-mouse-fix/tree/update-feed/docs/github-releases/${locale}`,
+                    "mmf-release":                  `https://github.com/noah-nuebling/mac-mouse-fix/blob/update-feed/docs/github-releases/${locale}/${tag}.md`,
+                    "mmf2-latest":                  `https://github.com/noah-nuebling/mac-mouse-fix/blob/update-feed/docs/github-releases/${locale}/2.2.5.md`,
+
                 };
     
                 // Apply overrides
@@ -147,7 +156,8 @@
                     // Handle email separately from urlMap to prevent automatic crawling of the address, and to allow custom param for prefilling email subject.
                     url = getMailToNoah(getQueryParam("subject"), getQueryParam("body")); 
                     
-                } else if (target == "mmf-apply-for-refund") {
+                } 
+                else if (target == "mmf-apply-for-refund") {
 
                     /* Refunds */
                     
@@ -176,8 +186,9 @@
                     `).trim();
                     
                     url = getMailToNoah(subject, body);
-                    
-                } else {
+                
+                }
+                else {
                     url = urlMap[target];
                 }
             } else {
