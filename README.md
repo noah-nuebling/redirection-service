@@ -80,9 +80,10 @@ Possible values for the `&target=` param:
   - `mmf-apply-for-refund` Place where users can apply for a refund.
      - As of Sep 2024, this drafts an email to me, prefilled with some questions.
 - **MMF Feedback:**
-  - `mmf-feedback` general feedback page. (As of [Jul 2025], this will have the MMF Feedback Assistant take you to the bug-report page.)
+  - `mmf-feedback` general feedback page. Takes `&locale=` param. (As of [Jul 2025], this will have the MMF Feedback Assistant take you to the feature-request page.)
+      - [Aug 2024] Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
+      - Update: [Jul 2025] Actually the Feedback Assistant is a web-app which can detect the locale itself – so this seems unnecessary?
   - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
-    - (Last updated 30.08.2024: Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
   - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
   - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param.
 - **MMF Help:**
