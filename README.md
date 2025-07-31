@@ -78,15 +78,17 @@ Possible values for the `&target=` param:
   - `mmf-releases`: Overview of MMF releases. Takes `&locale=` param.
     - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes sense to use redirection-service, since I feel it's unlikely we'll move this or make it localizable.
   - `mmf-version-2-vs-3`: Feature comparison between MMF 2 and 3. Takes `&locale=` param.
-  - `mmf-apply-for-refund` Place where users can apply for a refund.
-     - As of Sep 2024, this drafts an email to me, prefilled with some questions.
+  - `mmf-apply-for-refund` Form where users can apply for a refund.
+     - As of [Sep 2024], this drafts an email to me, prefilled with some questions.
 - **MMF Feedback:**
-  - `mmf-feedback` general feedback page. Takes `&locale=` param. (As of [Jul 2025], this will have the MMF Feedback Assistant take you to the feature-request page.)
+  - `mmf-feedback` General feedback form. Takes `&locale=` param. (As of [Jul 2025], this will have the MMF Feedback Assistant take you to the feature-request page.)
       - [Aug 2024] Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
       - Update: [Jul 2025] Actually the Feedback Assistant is a web-app which can detect the locale itself – so this seems unnecessary?
-  - `mmf-feedback-bug-report` page for submitting bug reports. Takes `&locale=` param.
-  - `mmf-feedback-feature-request` page for submitting feature requests. Takes `&locale=` param.
-  - `mmf-feedback-other` page for submitting other feedback. Takes `&locale=` param.
+  - `mmf-feedback-bug-report` Form for submitting bug reports. Takes `&locale=` param.
+  - `mmf-feedback-feature-request` Form for submitting feature requests. Takes `&locale=` param.
+  - `mmf-feedback-other` Form for submitting other feedback. Takes `&locale=` param.
+  - `mmf-feedback-help-content` Form for feedback / questions regarding help content like our guides. Takes `&locale=` param.
+      - As of [Jul 2025], this prefills the `mmf-feedback-other` form with a title and question.
 - **MMF Help:**
   - `mmf-authorize-accessibility-help` Opens when you click 'Help' on the 'Accessibility Sheet' in Mac Mouse Fix. Redirects to GitHub Discussion #101 as of Sep 2024. Takes `&locale=` param.
 - **MMF Guides:**

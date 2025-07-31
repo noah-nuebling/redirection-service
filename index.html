@@ -85,6 +85,7 @@
                 "mmf-feedback-bug-report":          "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=bug-report",
                 "mmf-feedback-feature-request":     "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=feature-request",
                 "mmf-feedback-other":               "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=other",
+                "mmf-feedback-help-content":"",     // Custom impl below || Note: This could be categorized with 'feedback', 'help', 'guides' or 'forms'. Maybe our target names should reflect which things are "Forms"?
                 // MMF Help:
                 "mmf-authorize-accessibility-help": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/101",
                 // MMF Guides:
@@ -150,6 +151,13 @@
                     const result = `mailto:${e5}${e4}.${e3}@${e2}.${e1}?subject=${subject}&body=${body}`;
                     return result;
                 }
+
+                function getFreeformFeedbackAssistant(subject, body) { // This lets you send a mail to me _or_ open a GitHub Issue. So it's kind of a superset of getMailToNoah()
+                    subject = encodeURIComponent(subject ?? "");
+                    body = encodeURIComponent(body ?? "");
+                    const result = `https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=other&title=${subject}&body=${body}`;
+                    return result;
+                }
                 
                 if (target == "mailto-noah") {
 
@@ -189,6 +197,17 @@
                     
                     url = getMailToNoah(subject, body);
                 
+                }
+                else if (target == 'mmf-feedback-help-content') {
+
+                    url = getFreeformFeedbackAssistant(
+                        "I Still Have Questions After Viewing Help Content!", 
+                        removeIndent(`
+                            Questions I still have:
+                            
+                            (Fill in here)
+                        `).trim()
+                    )
                 }
                 else {
                     url = urlMap[target];
