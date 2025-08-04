@@ -79,7 +79,10 @@ Possible values for the `&target=` param:
     - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes sense to use redirection-service, since I feel it's unlikely we'll move this or make it localizable.
   - `mmf-version-2-vs-3`: Feature comparison between MMF 2 and 3. Takes `&locale=` param.
   - `mmf-apply-for-refund` Form where users can apply for a refund.
-     - As of [Sep 2024], this drafts an email to me, prefilled with some questions.
+    - As of [Sep 2024], this drafts an email to me, prefilled with some questions.
+  - `mmf-apply-for-milkshake-license` Form where users that have 'bought me a milkshake' before, can get a free license.
+    - As of [Aug 2025], this drafts an email to me, prefilled with some instructions.
+    - Historical context: [Aug 2025] Before this, we just told people to write an email with 'Free License' in the subject, in the Acknowledgements, the Readme, and in the 3.0.0 update notes – but almost nobody did that. We also didn't include a link to my email htere (IIRC, cause I didn't wanna leak it to webcrawlers). Maybe the friction was too high. Now, with the redirection service, we can make the experience much nicer. Not sure if it's too late.
 - **MMF Feedback:**
   - `mmf-feedback` General feedback form. Takes `&locale=` param. (As of [Jul 2025], this will have the MMF Feedback Assistant take you to the feature-request page.)
       - [Aug 2024] Locale params aren't yet supported by the feedback assistant but we should already pass the locale in for once we add locale support.
@@ -87,11 +90,11 @@ Possible values for the `&target=` param:
   - `mmf-feedback-bug-report` Form for submitting bug reports. Takes `&locale=` param.
   - `mmf-feedback-feature-request` Form for submitting feature requests. Takes `&locale=` param.
   - `mmf-feedback-other` Form for submitting other feedback. Takes `&locale=` param.
-  - `mmf-feedback-help-content` Form for feedback / questions regarding help content like our guides. Takes `&locale=` param.
-      - As of [Jul 2025], this prefills the `mmf-feedback-other` form with a title and question.
-- **MMF Help:**
+- **MMF Support**
+  - `mmf-support-still-have-questions` Link at the bottom of our support pages (such as guides) saying something like "Click here if you still have question". Takes `&locale=` param.
+      - As of [Aug 2025], this prefills the `mmf-feedback-other` form with a title and question.
+      - Meta: [Aug 2025] We've only just introduced the idea of grouping all the 'guide' and 'help' pages under 'support', that's why the naming of the older links is a bit inconsistent.
   - `mmf-authorize-accessibility-help` Opens when you click 'Help' on the 'Accessibility Sheet' in Mac Mouse Fix. Redirects to GitHub Discussion #101 as of Sep 2024. Takes `&locale=` param.
-- **MMF Guides:**
   - `mmf-guides-and-community` Used for the "Help > View Guides or Ask the Community" menu item inside MMF. Redirects to GitHub Discussions as of 05.09.2024. Takes `&locale=` param.
     - Probably not feasible to localize this. Think we should not use this inside MMF.
   - `mmf-guides`: Overview of available guides for MMF. Takes `&locale=` param.

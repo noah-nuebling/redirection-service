@@ -80,15 +80,15 @@
                 "mmf-releases":                     "https://github.com/noah-nuebling/mac-mouse-fix/releases",
                 "mmf-version-2-vs-3":               "https://github.com/noah-nuebling/mac-mouse-fix/discussions/743#discussioncomment-7938922",
                 "mmf-apply-for-refund":             "", // Custom impl below
+                "mmf-apply-for-milkshake-license":  "", // Custom impl below
                 // MMF Feedback:
                 "mmf-feedback":                     "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/",
                 "mmf-feedback-bug-report":          "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=bug-report",
                 "mmf-feedback-feature-request":     "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=feature-request",
                 "mmf-feedback-other":               "https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=other",
-                "mmf-feedback-help-content":"",     // Custom impl below || Note: This could be categorized with 'feedback', 'help', 'guides' or 'forms'. Maybe our target names should reflect which things are "Forms"?
-                // MMF Help:
+                // MMF Support:
+                "mmf-support-still-have-questions":"",     // Custom impl below || Note: This could be categorized with 'support', 'feedback', 'forms'... Should 'forms' be a category?
                 "mmf-authorize-accessibility-help": "https://github.com/noah-nuebling/mac-mouse-fix/discussions/101",
-                // MMF Guides:
                 "mmf-ventura-enabling-guide":       "https://github.com/noah-nuebling/mac-mouse-fix/discussions/861",
                 "mmf-guides-and-community":         "https://github.com/noah-nuebling/mac-mouse-fix/discussions",
                 "mmf-guides":                       "https://github.com/noah-nuebling/mac-mouse-fix/discussions/categories/guides",
@@ -198,14 +198,35 @@
                     url = getMailToNoah(subject, body);
                 
                 }
-                else if (target == 'mmf-feedback-help-content') {
+                else if (target == 'mmf-support-still-have-questions') {
 
                     url = getFreeformFeedbackAssistant(
-                        "I Still Have Questions After Viewing Help Content!", 
+                        "I Viewed A Support Page, But I Still Have Questions!",
                         removeIndent(`
                             Questions I still have:
                             
                             (Fill in here)
+
+                            <!-- 
+                            Note from Noah:
+                            I often need longer to look at messages, and I can't respond to all of them. But I look at everything, and do my best to make the user experience of Mac Mouse Fix as good as possible! Thank you for your feedback.
+                            -->
+                        `).trim()
+                    )
+                }
+                else if (target == 'mmf-apply-for-milkshake-license') {
+                    url = getMailToNoah(
+                        "Mac Mouse Fix Milkshake License",
+                        removeIndent(`
+                            Hello there! To receive a free license, please:
+                            - Attach a screenshot or some other proof of your PayPal donation.
+                            - Send off this email!
+
+                            It may take me a while to get back, but if you buy a Mac Mouse Fix license in the meantime, I'll refund you.
+                            I hope this feels like in those video games, when you do something nice for an NPC and later they give you a cool item.
+                            Thanks for the milkshakes!! :)
+
+                            (Feel free to edit this email if there's anything else you'd like to say.)
                         `).trim()
                     )
                 }
