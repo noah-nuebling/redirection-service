@@ -101,6 +101,7 @@ Possible values for the `&target=` param:
   - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.) 
   - `mmf-captured-buttons-guide`: Explanation of the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
+  - `mmf-captured-scroll-wheels-guide`: Explanation of the concept of 'captured' scroll wheels in Mac Mouse Fix. Takes `&locale=` param.
   - `mmf-ventura-enabling-guide`: Workaround for problems with enabling the app on macOS 13 Ventura and macOS 14 Sonoma. Takes `&locale` param
     - As of 05.09.2024, I don't plan on actually localizing this, since it's a lot of text and will soon be outdated since it only applies to macOS 13 Ventura and 14 Sonoma (problem was fixed in macOS 15 Sequoia)
 - **MMF Releases**
