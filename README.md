@@ -44,7 +44,7 @@ Closing doesn't work in all circumstances due to browser security stuff.
 
 (There's more TODOs than this in the source code [Sep 2025])
 
-- [ ] Update feature-strings-catalog -> master when we merge that branch.
+- [ ] Update `feature-strings-catalog` -> `master` when we merge that branch.
 
 ## Query Params
 
