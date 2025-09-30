@@ -40,6 +40,12 @@ Closing doesn't work in all circumstances due to browser security stuff.
 - To compose an email to me:
   - https://noah-nuebling.github.io/redirection-service?message=&target=mailto-noah&body=&subject=Cool%20Beans
 
+## TODOs
+
+(There's more TODOs than this in the source code [Sep 2025])
+
+- [ ] Update feature-strings-catalog -> master when we merge that branch.
+
 ## Query Params
 
 **target**
