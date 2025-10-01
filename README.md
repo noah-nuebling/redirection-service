@@ -44,7 +44,9 @@ Closing doesn't work in all circumstances due to browser security stuff.
 
 (There's more TODOs than this in the source code [Sep 2025])
 
-- [ ] Update `feature-strings-catalog` -> `master` when we merge that branch.
+- [ ] Update `/discussions` and `feature-strings-catalog/Support` links to `master/Support` when we merge the `feature-strings-catalog` branch and close down discussions (See note `MMF - Discontinuing GitHub Discussions.md`)
+    - Idea: We probably want to map `mmf-authorize-accessibility-help` to a new `mmf-support-overview` entry (https://github.com/noah-nuebling/mac-mouse-fix/blob/feature-strings-catalog/Support/Support.md)
+        - (Because the new versions of MMF can resolve the ax problems themselves – we could also just remove the 'help' link inside MMF. See note `MMF - Discontinuing GitHub Discussions.md` for more.)
 
 ## Query Params
 
