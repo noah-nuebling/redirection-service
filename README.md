@@ -105,7 +105,7 @@ Possible values for the `&target=` param:
   - `mmf-authorize-accessibility-help` Opens when you click 'Help' on the 'Accessibility Sheet' in Mac Mouse Fix. Redirects to GitHub Discussion #101 as of Sep 2024. Takes `&locale=` param.
   - `mmf-guides-and-community` Used for the "Help > View Guides or Ask the Community" menu item inside MMF. Redirects to GitHub Discussions as of 05.09.2024. Takes `&locale=` param.
     - Probably not feasible to localize this. Think we should not use this inside MMF.
-  - `mmf-guides`: Overview of available guides for MMF. Takes `&locale=` param.
+  - `mmf-guides`: Overview of available guides for MMF. Used by the 'Get Help' link in MMF 2 and MMF 3 [Sep 2025] Takes `&locale=` param.
   - `mmf-compatibility-guide`: Explains which MMF versions are compatible with which macOS versions. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.) 
   - `mmf-captured-buttons-guide`: Explanation of the concept of 'captured' buttons in Mac Mouse Fix. Takes `&locale=` param.
