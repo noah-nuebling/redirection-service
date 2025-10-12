@@ -74,6 +74,7 @@ Possible values for the `&target=` param:
   - `mmf-github` redirects to the MMF GitHub Readme. Takes `&locale=` param.
     - We plan to use this for the 'Check it out on GitHub' link inside the MMF app. (Last updated: 01.09.2024)
   - `mmf-acknowledgements` redirects to MMF Acknowledgements page. Takes `&locale=` param.
+  - `mmf-localization-credits` shows acknowledgements for localizers.
   - `mmf-about` Links to the about document for Mac Mouse Fix. Takes `&locale=` param.
     - At the time of writing this is the GitHub readme. (Last updated: 02.09.2024) (Later we might want to move this to the MMF website.)
   - `mmf-questions` redirects to where common questions that users might have are answered. Takes `&locale=` param.
