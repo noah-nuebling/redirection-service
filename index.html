@@ -77,6 +77,8 @@
                 "mmf-about":                        "https://github.com/noah-nuebling/mac-mouse-fix",
                 "mmf-questions":                    "https://github.com/noah-nuebling/mac-mouse-fix?tab=readme-ov-file#questions",
                 "mmf-localization-contribution":    "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731", // Aka localization-guide or translation-guide
+                "mmf-submit-translations-email":    "", // Custom impl below
+                "mmf-submit-translations-github":   "https://github.com/noah-nuebling/mac-mouse-fix/discussions/731#new_comment_field",
                 "mmf-help-and-feedback":            "https://github.com/noah-nuebling/mac-mouse-fix/issues/new/choose",
                 "mmf-releases":                     "https://github.com/noah-nuebling/mac-mouse-fix/releases",
                 "mmf-version-2-vs-3":               "https://github.com/noah-nuebling/mac-mouse-fix/discussions/743#discussioncomment-7938922",
@@ -231,6 +233,14 @@
                             Thanks for the milkshakes!! :)
 
                             (Feel free to edit this email, before sending it off!)
+                        `).trim()
+                    )
+                }
+                else if (target == "mmf-submit-translations-email") {
+                    url = getMailToNoah(
+                        "Mac Mouse Fix Translations Submission",
+                        removeIndent(`
+                            (Attach your translated .xcloc files to this email)
                         `).trim()
                     )
                 }
