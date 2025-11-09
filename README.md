@@ -80,8 +80,10 @@ Possible values for the `&target=` param:
   - `mmf-questions` redirects to where common questions that users might have are answered. Takes `&locale=` param.
     - (We might want to move this from the GitHub Readme to the MMF website at some point, that's why were creating a redirection-service entry for it.)
   - `mmf-localization-contribution` Place where people can help to translate Mac Mouse Fix. Does **not** take `&locale=` param.
-    - This is the 'Localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to Crowd In/Localazy or something.
+    - This is the 'Localization Guide' at the time of writing (05.09.2024), but maybe later we'll link to CrowdIn/Localazy or something.
     - Not localizing this since it is only directed towards people who speak English.
+  - `mmf-submit-translations-email`  Place where people can submit their Mac Mouse Fix translations (.xcloc files) via email.  Does **not** take `&locale=` parameter. [Nov 2025]
+  - `mmf-submit-translations-github` Place where people can submit their Mac Mouse Fix translations (.xcloc files) via GitHub. Does **not** take `&locale=` parameter. [Nov 2025]
   - `mmf-help-and-feedback` Page for accessing help or, or giving Feedback. Takes `&locale=` param. 
     - Used in the GitHub Readme (as of 07.09.2024). Not sure it makes any sense to use redirection-service for this since we can easily just update the GH Readme, and it's unlikely we'll use this anywhere else.
   - `mmf-releases`: Overview of MMF releases. Takes `&locale=` param.
